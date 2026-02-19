@@ -40,7 +40,19 @@ class Settings(BaseSettings):
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> Union[PostgresDsn, str]:
         if self.DATABASE_URL:
-            return self.DATABASE_URL
+            # SQLAlchemy asyncpg requires 'postgresql+asyncpg://'
+            # and 'channel_binding' is not supported by asyncpg
+            uri = self.DATABASE_URL
+            if uri.startswith("postgresql://") and not uri.startswith("postgresql+asyncpg://"):
+                uri = uri.replace("postgresql://", "postgresql+asyncpg://", 1)
+            
+            # Remove channel_binding=require as it's not supported by asyncpg
+            if "channel_binding=" in uri:
+                import re
+                uri = re.sub(r'([?&])channel_binding=[^&]*(&|$)', r'\1', uri)
+                uri = uri.rstrip('?&')
+            
+            return uri
         return str(
             PostgresDsn.build(
                 scheme="postgresql+asyncpg",
