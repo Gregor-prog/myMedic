@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MyMedic - Booking Confirmation</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0000cc",
+                        "background-light": "#f5f5f8",
+                        "background-dark": "#0f0f23",
+                        "emerald-secure": "#10B981",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">MyMedic</h2>
+</div>
+<div class="flex items-center gap-6">
+<a class="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+                        Back to Search
+                    </a>
+<div class="flex items-center justify-center bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300 gap-1.5 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-sm">lock</span>
+                        Secure Checkout
+                    </div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+<div class="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+<!-- Left Column: Booking Summary -->
+<div class="w-full lg:w-5/12 order-2 lg:order-1">
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6 sticky top-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6">Booking Summary</h3>
+<!-- Doctor Info -->
+<div class="flex gap-4 mb-6 pb-6 border-b border-slate-100 dark:border-slate-800">
+<div class="relative h-20 w-20 flex-shrink-0">
+<img alt="Dr. Sarah Jenkins Portrait" class="h-full w-full object-cover rounded-xl shadow-sm" data-alt="Portrait of a female doctor smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQklgHqikD8CNWXgDmPC0kihnk-bd3KerbbZ4dtt5d0VQw3AxdU4mTNKJfYvcphQx5J5VT9dbuwAoEXs0IVoaQuDTtG9E-Lg6vRH9yVquK0AOGXkBzsB7Rbn6rydCKFYXo3ZToP8Wb8UBzKpG3PZ95A0uc5lR0SqZkLz2lBeLyy3ADUhl3Q4sw8erlsjdHthqQreGT2nL8vX_yIvkgaoQrFNwoE5ZbMOJDwaNwPNlg0AUAOX7TmtkMrTloO5tdfwhKZkz-KwI1u2w"/>
+<div class="absolute -bottom-1 -right-1 bg-green-500 h-4 w-4 rounded-full border-2 border-white dark:border-slate-900"></div>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Dr. Sarah Jenkins</h4>
+<p class="text-sm text-primary font-medium mb-1">Consultant Cardiologist</p>
+<div class="flex items-center gap-1 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[14px]">star</span>
+                                4.9 (120+ Reviews)
+                            </div>
+</div>
+</div>
+<!-- Date & Time -->
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<div class="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">Date</p>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Wednesday, Oct 24th, 2024</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<div class="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">Time</p>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">10:00 AM - 10:45 AM</p>
+</div>
+</div>
+</div>
+<!-- Price Breakdown -->
+<div class="space-y-3 pt-2">
+<div class="flex justify-between text-sm text-slate-500 dark:text-slate-400">
+<span>Consultation Fee</span>
+<span class="text-slate-900 dark:text-white font-medium">$350.00</span>
+</div>
+<div class="flex justify-between text-sm text-slate-500 dark:text-slate-400">
+<span>Booking Fee</span>
+<span class="text-slate-900 dark:text-white font-medium">$15.00</span>
+</div>
+<div class="flex justify-between items-center pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+<span class="text-base font-bold text-slate-900 dark:text-white">Total Amount</span>
+<span class="text-2xl font-bold text-primary">$365.00</span>
+</div>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="mt-6 flex justify-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Only decorative icons to signify partners -->
+<div class="h-8 w-16 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" data-alt="Insurance Partner Logo Placeholder"></div>
+<div class="h-8 w-16 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" data-alt="Hospital Partner Logo Placeholder"></div>
+<div class="h-8 w-16 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" data-alt="Medical Board Logo Placeholder"></div>
+</div>
+</div>
+<!-- Right Column: Payment Details -->
+<div class="w-full lg:w-7/12 order-1 lg:order-2">
+<div class="mb-6">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Secure Payment</h1>
+<p class="text-slate-500 dark:text-slate-400">Complete your booking securely. Your health data is encrypted.</p>
+</div>
+<!-- Digital Wallets -->
+<div class="space-y-4 mb-8">
+<button class="relative w-full flex items-center justify-center gap-3 bg-black text-white h-14 rounded-xl hover:bg-slate-800 transition-colors shadow-sm overflow-hidden group">
+<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<span class="text-white" data-icon="AppleLogo">
+<!-- Apple Logo SVG -->
+<svg class="h-5 w-auto fill-current" viewbox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 126.7 89.8 126.7 19.6 0 38.5-16.8 53.3-16.8s33.6 16.8 53.9 16.8c34 0 67.9-79.7 82.1-107.6-5.8-3.3-37.4-32.3-38.8-85.2zM277.5 73.1c16.1-23.3 24.3-51.4 18.7-81.2-22.3 0-52.4 12.8-71.3 40.6-11.8 17.6-21.7 45-13.8 77.2 28.5 3.3 53.6-13.3 66.4-36.6z"></path></svg>
+</span>
+<span class="font-semibold text-lg">Pay with Apple Pay</span>
+</button>
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+<span class="flex-shrink-0 mx-4 text-slate-400 text-sm font-medium">Or pay with card</span>
+<div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+</div>
+</div>
+<!-- Credit Card Form -->
+<form class="space-y-6 bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
+<!-- Decor element -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 pointer-events-none"></div>
+<!-- Name on Card -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="card-name">Name on Card</label>
+<div class="relative">
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary py-3 pl-4 sm:text-sm transition-shadow" id="card-name" placeholder="John Doe" type="text"/>
+</div>
+</div>
+<!-- Card Number -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="card-number">Card Number</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400">credit_card</span>
+</div>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary py-3 pl-10 sm:text-sm transition-shadow" id="card-number" placeholder="0000 0000 0000 0000" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none gap-2">
+<!-- Simple Card Brand Icons -->
+<div class="h-5 w-8 bg-slate-100 dark:bg-slate-700 rounded-sm"></div>
+<div class="h-5 w-8 bg-slate-100 dark:bg-slate-700 rounded-sm"></div>
+</div>
+</div>
+</div>
+<!-- Expiry & CVC -->
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="expiry">Expiry Date</label>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary py-3 px-4 sm:text-sm transition-shadow" id="expiry" placeholder="MM / YY" type="text"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="cvc">CVC / CVV</label>
+<span class="text-xs text-primary cursor-pointer hover:underline">What's this?</span>
+</div>
+<div class="relative">
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary py-3 px-4 sm:text-sm transition-shadow" id="cvc" placeholder="123" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Save Card Checkbox -->
+<div class="flex items-center gap-3 pt-2">
+<div class="flex h-5 items-center">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary" id="save-card" name="save-card" type="checkbox"/>
+</div>
+<div class="text-sm">
+<label class="font-medium text-slate-700 dark:text-slate-300" for="save-card">Save card securely for future payments</label>
+</div>
+</div>
+</form>
+<!-- Secure Badge -->
+<div class="flex items-center justify-center gap-2 mt-8 mb-6 py-2 px-4 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-900/30 rounded-full w-fit mx-auto">
+<span class="material-symbols-outlined text-emerald-secure text-sm">lock</span>
+<span class="text-xs font-semibold text-emerald-secure tracking-wide uppercase">SSL Secure 256-bit Encryption</span>
+</div>
+<!-- Pay Button -->
+<button class="w-full bg-[#0052CC] hover:bg-blue-800 text-white rounded-xl py-4 px-6 text-lg font-bold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all duration-200 transform hover:-translate-y-0.5 flex justify-between items-center">
+<span>Pay &amp; Confirm</span>
+<span class="bg-white/20 text-white py-1 px-3 rounded text-sm font-medium">$365.00</span>
+</button>
+<p class="text-center text-xs text-slate-400 mt-4">
+                    By clicking "Pay &amp; Confirm", you agree to MyMedic's <a class="underline hover:text-primary" href="#">Terms of Service</a> and <a class="underline hover:text-primary" href="#">Cancellation Policy</a>.
+                </p>
+</div>
+</div>
+</main>
+</body></html>

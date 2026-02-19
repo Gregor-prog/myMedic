@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure OTP Verification - MyMedic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom subtle animations for interaction */
+        .input-otp:focus {
+            box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.1);
+            transform: translateY(-1px);
+        }
+        .input-otp {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Header / Navigation -->
+<header class="w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo Section -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-2xl">local_hospital</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">MyMedic</span>
+</div>
+<!-- Right Utility Navigation -->
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6">
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Contact Support</a>
+</nav>
+<div class="h-4 w-px bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs font-medium bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Secure Connection</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+<!-- Decorative Background Elements -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+<div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+<!-- Verification Card -->
+<div class="w-full max-w-lg bg-white dark:bg-slate-900 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-800 p-8 sm:p-10 relative">
+<!-- Progress Indicator -->
+<div class="absolute top-0 left-0 w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-t-xl overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<div class="flex flex-col items-center text-center space-y-6">
+<!-- Icon -->
+<div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary text-3xl">phonelink_lock</span>
+</div>
+<!-- Text Content -->
+<div class="space-y-2">
+<h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Verification Code</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base max-w-sm mx-auto">
+                        We've sent a 6-digit secure code to your mobile device ending in <span class="font-semibold text-slate-900 dark:text-slate-200">**89</span>.
+                    </p>
+</div>
+<!-- OTP Inputs -->
+<div class="py-4 w-full">
+<fieldset class="flex justify-center gap-2 sm:gap-3">
+<legend class="sr-only">Enter the 6-digit verification code</legend>
+<!-- Input 1 -->
+<input aria-label="Digit 1" autocomplete="one-time-code" class="input-otp flex h-14 w-12 sm:h-16 sm:w-14 text-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-2xl font-semibold text-slate-900 dark:text-white focus:border-primary focus:ring-0 placeholder-transparent outline-none" inputmode="numeric" maxlength="1" onkeyup="if(this.value.length === 1) this.nextElementSibling.focus()" pattern="[0-9]" type="text"/>
+<!-- Input 2 -->
+<input aria-label="Digit 2" class="input-otp flex h-14 w-12 sm:h-16 sm:w-14 text-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-2xl font-semibold text-slate-900 dark:text-white focus:border-primary focus:ring-0 placeholder-transparent outline-none" inputmode="numeric" maxlength="1" onkeyup="if(this.value.length === 1) this.nextElementSibling.focus(); if(event.key === 'Backspace') this.previousElementSibling.focus()" pattern="[0-9]" type="text"/>
+<!-- Input 3 -->
+<input aria-label="Digit 3" class="input-otp flex h-14 w-12 sm:h-16 sm:w-14 text-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-2xl font-semibold text-slate-900 dark:text-white focus:border-primary focus:ring-0 placeholder-transparent outline-none" inputmode="numeric" maxlength="1" onkeyup="if(this.value.length === 1) this.nextElementSibling.focus(); if(event.key === 'Backspace') this.previousElementSibling.focus()" pattern="[0-9]" type="text"/>
+<!-- Spacer for visual grouping -->
+<div class="w-1 sm:w-2"></div>
+<!-- Input 4 -->
+<input aria-label="Digit 4" class="input-otp flex h-14 w-12 sm:h-16 sm:w-14 text-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-2xl font-semibold text-slate-900 dark:text-white focus:border-primary focus:ring-0 placeholder-transparent outline-none" inputmode="numeric" maxlength="1" onkeyup="if(this.value.length === 1) this.nextElementSibling.focus(); if(event.key === 'Backspace') this.previousElementSibling.focus()" pattern="[0-9]" type="text"/>
+<!-- Input 5 -->
+<input aria-label="Digit 5" class="input-otp flex h-14 w-12 sm:h-16 sm:w-14 text-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-2xl font-semibold text-slate-900 dark:text-white focus:border-primary focus:ring-0 placeholder-transparent outline-none" inputmode="numeric" maxlength="1" onkeyup="if(this.value.length === 1) this.nextElementSibling.focus(); if(event.key === 'Backspace') this.previousElementSibling.focus()" pattern="[0-9]" type="text"/>
+<!-- Input 6 -->
+<input aria-label="Digit 6" class="input-otp flex h-14 w-12 sm:h-16 sm:w-14 text-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-2xl font-semibold text-slate-900 dark:text-white focus:border-primary focus:ring-0 placeholder-transparent outline-none" inputmode="numeric" maxlength="1" onkeyup="if(event.key === 'Backspace') this.previousElementSibling.focus()" pattern="[0-9]" type="text"/>
+</fieldset>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-lg py-3.5 px-6 rounded-xl transition-colors shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 group">
+<span>Verify &amp; Continue</span>
+<span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<!-- Footer Links -->
+<div class="flex flex-col items-center gap-4 w-full pt-2">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">
+                        Didn't receive the code? 
+                        <button class="text-primary hover:text-blue-700 dark:hover:text-blue-400 font-semibold ml-1 underline decoration-2 decoration-transparent hover:decoration-current transition-all">Resend Code</button>
+<span class="text-slate-400 ml-1 font-normal">(00:45)</span>
+</p>
+<div class="w-full border-t border-slate-100 dark:border-slate-800 mt-2"></div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500 text-xs mt-2">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+<span>Secured by MyMedic Guard™</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<p class="mt-8 text-center text-xs text-slate-400 dark:text-slate-600 max-w-md">
+            By verifying, you agree to our <a class="underline hover:text-slate-500 dark:hover:text-slate-400" href="#">Terms of Service</a> and confirm that you are the authorized account holder.
+        </p>
+</main>
+</body></html>

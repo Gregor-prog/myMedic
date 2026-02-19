@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MyMedic - Medical Marketplace</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc", // Main Brand Color
+                        "primary-content": "#ffffff",
+                        "secondary": "#e3efff", // Lighter blue for backgrounds
+                        "background-light": "#f8fafc", // Very subtle off-white for main bg
+                        "background-dark": "#0f1723",
+                        "surface-light": "#ffffff",
+                        "text-main": "#101418",
+                        "text-muted": "#5e718d",
+                        "success": "#22c55e", // Green for Verified
+                        "warning": "#f59e0b", // Gold for Stars
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal scrolling areas */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main font-body min-h-screen flex flex-col antialiased">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">medical_services</span>
+</div>
+<span class="font-display font-bold text-xl tracking-tight text-gray-900">MyMedic</span>
+</div>
+<!-- Desktop Nav Links (Hidden on mobile) -->
+<nav class="hidden md:flex gap-8">
+<a class="text-sm font-medium text-primary" href="#">Marketplace</a>
+<a class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors" href="#">Appointments</a>
+<a class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors" href="#">Messages</a>
+<a class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors" href="#">History</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-full text-gray-500 hover:bg-gray-50 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gray-200 overflow-hidden border border-gray-200" data-alt="User profile picture placeholder">
+<img alt="User Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC-2z_pJIZgNQ6fNpkE1AsX9SDLfWbrJhoizoQiCn04-Cm39qBO5Pqr9xG5X1aEu5T7YQ_ijifhYzMmqfai39k4rhSO0Aw4ievT_bhomeHGnQ8H3oliQSzV0aNvHbcRDI6Q77mi6NSwi-lWAngx1N3Bl76JPRqaQkAoljkN76tdZlkrK-DYbllmCRB7A4E_V3FAo2JYvMOkdejZrF6mHLxCgfr4Eh3CnizV_fwYadbTQiJPPJrSpSMAXBGwH5-WLXu1FwqfynSSCo"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Search Section -->
+<section class="relative bg-white pt-12 pb-8 px-4 sm:px-6 lg:px-8 border-b border-gray-100 overflow-hidden">
+<!-- Abstract background decoration -->
+<div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl -z-10"></div>
+<div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 rounded-full bg-secondary/40 blur-3xl -z-10"></div>
+<div class="max-w-4xl mx-auto text-center">
+<h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+                    Connect with elite medical professionals
+                </h1>
+<p class="text-text-muted text-base md:text-lg mb-8 max-w-2xl mx-auto">
+                    Access a curated network of verified specialists for your premium healthcare needs.
+                </p>
+<!-- Search Bar -->
+<div class="relative max-w-2xl mx-auto group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary shadow-soft transition-all" placeholder="Search by specialty, doctor name, or condition..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+<button class="bg-primary hover:bg-blue-700 text-white p-2 rounded-lg transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter Chips Carousel -->
+<section class="border-b border-gray-100 bg-white/50 backdrop-blur-sm sticky top-16 z-40">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 sm:pb-0">
+<!-- Active Chip -->
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full text-sm font-semibold shadow-md shrink-0 transition-transform hover:scale-105">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+                        All Specialists
+                    </button>
+<!-- Inactive Chips -->
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-primary hover:text-primary hover:bg-blue-50 transition-all shrink-0">
+<span class="material-symbols-outlined text-[18px]">stethoscope</span>
+                        General Practice
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-primary hover:text-primary hover:bg-blue-50 transition-all shrink-0">
+<span class="material-symbols-outlined text-[18px]">cardiology</span>
+                        Cardiology
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-primary hover:text-primary hover:bg-blue-50 transition-all shrink-0">
+<span class="material-symbols-outlined text-[18px]">dermatology</span>
+                        Dermatology
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-primary hover:text-primary hover:bg-blue-50 transition-all shrink-0">
+<span class="material-symbols-outlined text-[18px]">child_care</span>
+                        Pediatrics
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-primary hover:text-primary hover:bg-blue-50 transition-all shrink-0">
+<span class="material-symbols-outlined text-[18px]">neurology</span>
+                        Neurology
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-medium hover:border-primary hover:text-primary hover:bg-blue-50 transition-all shrink-0">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+                        Psychiatry
+                    </button>
+</div>
+</div>
+</section>
+<!-- Professional Cards Grid -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-display font-bold text-gray-900">Recommended for you</h2>
+<button class="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
+                    Sort by: Rating <span class="material-symbols-outlined text-base">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<article class="bg-white rounded-2xl p-5 border border-gray-100 shadow-soft hover:shadow-hover transition-all duration-300 group flex flex-col h-full">
+<div class="relative mb-4">
+<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100 relative">
+<img alt="Professional female doctor portrait" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-T0gYVo7Vhtxo-yWcs2l9Xdqz_qRZmUCLUW0T3YD4DL6VVhL9ft2-n91Als6wyisc_DVL8MkK86Z5DVHb46Mk2iE4keEpDl_wPvlUgRJ4LKQDvDHpM5J7XdPUz5iUqszTGnpKIJtJvJCyqAIf45ex2EF0iyk836J5u2Xa0DNcOBl0X_Tg2VmSVyHjUvSMvopsCNT_obBAO-tyi-CURY3xx-UH7UHbaUnpYJ3ysdXn1qoPY_DZ0g5A1hpBMLSt7by6U2Iq-tRHwpA"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined filled text-warning text-sm">star</span>
+<span class="text-xs font-bold text-gray-800">4.9</span>
+<span class="text-xs text-gray-500">(55)</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-display font-bold text-lg text-gray-900 leading-tight">Dr. Sarah Jenkins</h3>
+<p class="text-primary font-medium text-sm mt-0.5">Cardiology</p>
+</div>
+<span class="inline-flex items-center gap-1 bg-green-50 text-success border border-green-100 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                            </span>
+</div>
+<p class="text-text-muted text-sm mt-3 line-clamp-2 leading-relaxed">
+                            Specializing in preventative cardiology for executive patients with over 15 years of experience in top-tier medical facilities.
+                        </p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+                                New York, NY
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                Next: Today, 2pm
+                            </div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50">
+<button class="w-full bg-primary hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            Book Appointment
+                        </button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-white rounded-2xl p-5 border border-gray-100 shadow-soft hover:shadow-hover transition-all duration-300 group flex flex-col h-full">
+<div class="relative mb-4">
+<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100 relative">
+<img alt="Asian male doctor smiling" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF2AWoO1H9Z-j4jsn7cR1qR6EgEjntC-e_hiwRrMo0TUQI024g-dNfBF-BY4XHHF_jXxLnUU8G9Q16oa_N8bzxf0UQTrzdixa4EOCUyGXlL_z8a9XUr2tYJCGNZuWU7hOe-YBieo0KRL7PIrQcBQ22ImH0zeVMJdzWOc0qi3-bxXX5z8tm8HsopypPjmV-QHANbgehWLeGSYHbfh99iwnp4UddXFIL09qjWioUjQb_yrd7y4hrlC7X8UsKo0_lIWiIbFUGGurXyHU"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined filled text-warning text-sm">star</span>
+<span class="text-xs font-bold text-gray-800">4.8</span>
+<span class="text-xs text-gray-500">(42)</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-display font-bold text-lg text-gray-900 leading-tight">Dr. Michael Chen</h3>
+<p class="text-primary font-medium text-sm mt-0.5">Dermatology</p>
+</div>
+<span class="inline-flex items-center gap-1 bg-green-50 text-success border border-green-100 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                            </span>
+</div>
+<p class="text-text-muted text-sm mt-3 line-clamp-2 leading-relaxed">
+                            Expert in advanced cosmetic dermatology and skin cancer screening. Personalized care plans for sensitive skin conditions.
+                        </p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+                                San Francisco, CA
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                Next: Tomorrow
+                            </div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50">
+<button class="w-full bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 font-semibold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            View Profile
+                        </button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-white rounded-2xl p-5 border border-gray-100 shadow-soft hover:shadow-hover transition-all duration-300 group flex flex-col h-full">
+<div class="relative mb-4">
+<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100 relative">
+<img alt="Female pediatrician with glasses" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaumLWy1w96oxs8hVLuraOsIBvu2oZenepM77-VQwG-G1RNXAsBzgDwr2YxANOsiEhiksGomasDHuSPnd8mH0kCpf6wX3PW634RdepFtXY341w9yJ8YagnsWpgi12Y8FHy0v88wg3tc1TLu3N0kazj0ATtPEmWfuEHZ4VBu_CQLsbVdCIzEPxV_ER9Qb0nxvNsfuuRiPyKLPPa6wc__qT0tWlXOFMEs3WFADIOpeQEbCnUts7KUvoVdJWYYvQ6Lp_2xKxmidkBtu0"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined filled text-warning text-sm">star</span>
+<span class="text-xs font-bold text-gray-800">5.0</span>
+<span class="text-xs text-gray-500">(30)</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-display font-bold text-lg text-gray-900 leading-tight">Dr. Emily Carter</h3>
+<p class="text-primary font-medium text-sm mt-0.5">Pediatrics</p>
+</div>
+<span class="inline-flex items-center gap-1 bg-green-50 text-success border border-green-100 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                            </span>
+</div>
+<p class="text-text-muted text-sm mt-3 line-clamp-2 leading-relaxed">
+                            Dedicated pediatric specialist focusing on developmental milestones and nutritional health for children of all ages.
+                        </p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+                                Chicago, IL
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                Next: Today, 4pm
+                            </div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50">
+<button class="w-full bg-primary hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            Book Appointment
+                        </button>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-white rounded-2xl p-5 border border-gray-100 shadow-soft hover:shadow-hover transition-all duration-300 group flex flex-col h-full">
+<div class="relative mb-4">
+<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100 relative">
+<img alt="Male general practitioner" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw5h42j5wBmA8I1VFiSJm_gjIzjTY86hzYcfJy1ryGSQbgKZHGxO3S3xBYuqFnuvFQrASgs1JVBuYfpDLtxuq9u0LdZVx-yJV3rgMfnwRPoo5gFUGUwVBYOzHPkPO5O3z1afXxYcErFlAoeT65d7PCCCiPmhNN-78giEVvvkyzy4jMfGbiCl2YX9WCnLt-Wchb5rxkT_wikM9cDx3sRavm7dLVRkK1_0P3O6S62blRItbtWwEIN2ojAnTsUp3tEPLFvJyvlZeofUk"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined filled text-warning text-sm">star</span>
+<span class="text-xs font-bold text-gray-800">4.7</span>
+<span class="text-xs text-gray-500">(60)</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-display font-bold text-lg text-gray-900 leading-tight">Dr. James Wilson</h3>
+<p class="text-primary font-medium text-sm mt-0.5">General Practice</p>
+</div>
+<span class="inline-flex items-center gap-1 bg-green-50 text-success border border-green-100 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                            </span>
+</div>
+<p class="text-text-muted text-sm mt-3 line-clamp-2 leading-relaxed">
+                            Comprehensive family medicine with a holistic approach. Offering thorough annual check-ups and chronic disease management.
+                        </p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+                                Seattle, WA
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                Next: Fri, 9am
+                            </div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50">
+<button class="w-full bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 font-semibold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            View Profile
+                        </button>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="bg-white rounded-2xl p-5 border border-gray-100 shadow-soft hover:shadow-hover transition-all duration-300 group flex flex-col h-full">
+<div class="relative mb-4">
+<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100 relative">
+<img alt="Female neurologist portrait" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCvsiYCipagdtCjmm-ER7tzWDkkH5K2cm58YucqGnfx6MCV_i5V5E_aFM9b-VicfaYIwxXwUzSeimgneuf9TZuqPj5_AA2ju64G6Cvsb84bVKZCswgxEkBxnJbgtvDy9q-wARpVFE4WQpOwz-MJACnhDtPYrUxjq-QamX8Xdr_baOfnKaa0-larD1bBMP9J9nLF38yU1r5hJOh7okOu58DMZv3mWuKlQDnCxujbRD8ZsNNrk5mJ10P0JI4u1F7Vi0zxpa_dDjuskE"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined filled text-warning text-sm">star</span>
+<span class="text-xs font-bold text-gray-800">4.9</span>
+<span class="text-xs text-gray-500">(25)</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-display font-bold text-lg text-gray-900 leading-tight">Dr. Olivia Martinez</h3>
+<p class="text-primary font-medium text-sm mt-0.5">Neurology</p>
+</div>
+<span class="inline-flex items-center gap-1 bg-green-50 text-success border border-green-100 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                            </span>
+</div>
+<p class="text-text-muted text-sm mt-3 line-clamp-2 leading-relaxed">
+                             Leading expert in migraine treatment and neurodegenerative disorders. Providing compassionate care for complex neurological cases.
+                        </p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+                                Austin, TX
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                Next: Mon, 10am
+                            </div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50">
+<button class="w-full bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 font-semibold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            View Profile
+                        </button>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="bg-white rounded-2xl p-5 border border-gray-100 shadow-soft hover:shadow-hover transition-all duration-300 group flex flex-col h-full">
+<div class="relative mb-4">
+<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-100 relative">
+<img alt="Male orthopedic surgeon" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK7VeqDxNaeszIjiOuo5LcQeZaI0OX-l39T2b-QfhwxvLEK35krQttHRtZu6kHXoJGmWRRp4t55vAEB36hJAKnYvbCZJGSFXJrI-GxPr5eT6y8mVPsOws8YoSvKfIee43k9VLE4y8ADOUlVrvaOrfYkDBt4IZgpo3GMopsiydXLZaGIbxO50wPiwkfuqWckAX66miFAcTfHXCovb4TB82Vvon71ABbfcGv5DnSzN2fQt662J3lqEE0w3H0jYJn1GKT2vki7yyQcLE"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined filled text-warning text-sm">star</span>
+<span class="text-xs font-bold text-gray-800">4.8</span>
+<span class="text-xs text-gray-500">(38)</span>
+</div>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div>
+<h3 class="font-display font-bold text-lg text-gray-900 leading-tight">Dr. Robert Brown</h3>
+<p class="text-primary font-medium text-sm mt-0.5">Orthopedics</p>
+</div>
+<span class="inline-flex items-center gap-1 bg-green-50 text-success border border-green-100 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                            </span>
+</div>
+<p class="text-text-muted text-sm mt-3 line-clamp-2 leading-relaxed">
+                            Specializing in sports medicine and minimally invasive joint surgery. Helping athletes and active individuals recover faster.
+                        </p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span>
+                                Denver, CO
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                Next: Today, 5pm
+                            </div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-50">
+<button class="w-full bg-primary hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            Book Appointment
+                        </button>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center mt-12 mb-8">
+<button class="bg-white border border-gray-200 text-gray-600 hover:text-primary hover:border-primary px-6 py-3 rounded-xl font-semibold shadow-sm transition-all flex items-center gap-2 group">
+                    Load more specialists
+                    <span class="material-symbols-outlined group-hover:translate-y-0.5 transition-transform">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer Simple -->
+<footer class="bg-white border-t border-gray-100 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-gray-400">© 2024 MyMedic Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-sm text-gray-500 hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-sm text-gray-500 hover:text-primary" href="#">Terms of Service</a>
+<a class="text-sm text-gray-500 hover:text-primary" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

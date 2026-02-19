@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MyMedic - Medical Records Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white">
+<div class="relative flex h-screen w-full overflow-hidden">
+<!-- Sidebar Navigation -->
+<div class="hidden lg:flex flex-col w-72 h-full bg-white dark:bg-[#1a2230] border-r border-slate-200 dark:border-slate-800">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary/10 flex items-center justify-center rounded-xl size-10 text-primary">
+<span class="material-symbols-outlined">local_hospital</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-none">MyMedic</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">Private Healthcare</p>
+</div>
+</div>
+<div class="flex-1 px-4 py-4 flex flex-col gap-2 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">grid_view</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-sm font-medium">Appointments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl bg-primary/10 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined fill-1">shield_lock</span>
+<span class="text-sm">Vault</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">credit_card</span>
+<span class="text-sm font-medium">Billing</span>
+</a>
+</div>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 cursor-pointer transition-colors">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-white dark:ring-slate-700 shadow-sm" data-alt="Portrait of a smiling man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIpgS6dmpQMISXGeHEyax5GclHQ9c8r75eq40Ms4UQkkBqGGFVBxMP-bWL2kawThE1nBW1yfGS95rirft-ZbGfCMsnAzzPCyelVH_KJs83VVrwIJF2z4XQMKqhL816czxxt2w0eR9_yZIxFgv28HYL0tf0yV5Mx9JdhcFrkoKZ2s49AZksqAESnSdWR9ZZsjZJV1HnOMPzdybps8cD2Cm-zrouOTfmFmUKHLV4EK9eLYaLlhmBAiz3CZk450AcdIQVXl1AUIXoN3U");'></div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-slate-900 dark:text-white text-sm font-semibold truncate">James Sterling</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs truncate">Premium Member</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Header -->
+<header class="flex-none px-6 py-5 bg-white dark:bg-[#1a2230] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-10">
+<div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Medical Records Vault</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-emerald-500 text-[18px]">lock</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm">End-to-end Encrypted • Last updated 2 mins ago</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 h-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+<span class="text-sm font-medium hidden sm:inline">Privacy Mode</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-6 lg:p-10">
+<div class="max-w-6xl mx-auto space-y-8">
+<!-- Search and Filters -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="relative flex-1 max-w-md">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined">search</span>
+<input class="w-full h-12 pl-12 pr-4 rounded-xl bg-white dark:bg-[#1a2230] border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm text-sm" placeholder="Search records by name, doctor, or date..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<select class="h-12 pl-4 pr-10 rounded-xl bg-white dark:bg-[#1a2230] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm focus:border-primary focus:ring-0 outline-none shadow-sm cursor-pointer appearance-none">
+<option>Sort by Date (Newest)</option>
+<option>Sort by Date (Oldest)</option>
+<option>Sort by Name (A-Z)</option>
+</select>
+<button class="h-12 w-12 flex items-center justify-center rounded-xl bg-white dark:bg-[#1a2230] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-primary/50 transition-colors shadow-sm">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex gap-2 border-b border-slate-200 dark:border-slate-800 pb-1 overflow-x-auto no-scrollbar">
+<button class="px-4 py-2 text-sm font-semibold text-primary border-b-2 border-primary whitespace-nowrap">All Records</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 border-b-2 border-transparent hover:border-slate-300 transition-all whitespace-nowrap">Lab Results</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 border-b-2 border-transparent hover:border-slate-300 transition-all whitespace-nowrap">Prescriptions</button>
+<button class="px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 border-b-2 border-transparent hover:border-slate-300 transition-all whitespace-nowrap">Imaging</button>
+</div>
+<!-- Recent Section -->
+<section>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Recent Documents</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="group bg-white dark:bg-[#1a2230] p-5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/30 dark:hover:border-primary/30 hover:shadow-md transition-all cursor-pointer relative">
+<div class="flex justify-between items-start mb-4">
+<div class="size-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">science</span>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Comprehensive Metabolic Panel</h4>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Lab Result</span>
+<span class="text-xs text-slate-400">•</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Oct 24, 2023</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800/50">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="Doctor portrait" class="w-full h-full object-cover" data-alt="Portrait of Dr. Vance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMSNl2oh7ikfVjfKpaRAwPDrt3U59yWg5t0P8Vwl2rhOcejdAqlD_LwxrtDx9YtVUmTOA4aZ53mw-ofeXDcT9xpONEcBOxw4g6psDhJN8G_f8BF88Z0zfp650bCP7Pcu1o6LmEV18tToCIFdDLUFdBcBBVGjmpPwRLnPY-u0G6sW7Z2coJAxDXuqUjuvY8J5esJhpTs_vVuUk5XNpOy2HehwoNNr4hUEmECfUiHbgUT_Lz1_0Okylvm2XaeaFvltZRRzlGyKzzf5Q"/>
+</div>
+<span class="text-xs text-slate-600 dark:text-slate-400 font-medium">Dr. S. Vance</span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="text-xs font-semibold">PDF</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white dark:bg-[#1a2230] p-5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/30 dark:hover:border-primary/30 hover:shadow-md transition-all cursor-pointer relative">
+<div class="flex justify-between items-start mb-4">
+<div class="size-10 rounded-lg bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined">radiology</span>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-purple-600 transition-colors">MRI - Lumbar Spine</h4>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Imaging</span>
+<span class="text-xs text-slate-400">•</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Oct 12, 2023</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800/50">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="Doctor portrait" class="w-full h-full object-cover" data-alt="Portrait of Dr. Chen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4KMt3NopwqkaxRUMVJBxY2swVHcqSYOy09nEvAV-83J7Y1-TRt8zAoh1-yvP2ao43fdrDIYzAZYHXpz21t9hISGAYvhskilVFSgMw2LATi3Fd3upNm2zeorR0JjcDo8mzPBoFtweKntJIlrTeVqGKpqXCLOAFzV1xUsf7Spc-V8g6CAunVGbLIeWQYxG-4C1iZyFlkEwZ--FDtwVir3uCKm15ejmYk8Ql1fVFGzpMGwHh2dpNPqEDsJnLgxJP9D9RHBNeaRmDWY0"/>
+</div>
+<span class="text-xs text-slate-600 dark:text-slate-400 font-medium">Dr. L. Chen</span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="text-xs font-semibold">DICOM</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-white dark:bg-[#1a2230] p-5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/30 dark:hover:border-primary/30 hover:shadow-md transition-all cursor-pointer relative">
+<div class="flex justify-between items-start mb-4">
+<div class="size-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">prescriptions</span>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-emerald-600 transition-colors">Amoxicillin 500mg - Refill</h4>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Prescription</span>
+<span class="text-xs text-slate-400">•</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Sep 28, 2023</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800/50">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="Doctor portrait" class="w-full h-full object-cover" data-alt="Portrait of Dr. Reynolds" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3gILYLTN60ITC5YVAZc1deD0GvyKbDPxNhATbBFnnaUD9Q4VB_k6t17zcjqYkWkP1by8sM7NopZkq2RV7Kl4TaBNHsms9tz_r6Zc77xYURlOJBp37R-48Az-qWCNChQd3LZZypBc2uIjcWWZh_sUD5CJ9loNOmOFpan-spDb32LVctx76eNsST4LAfqHmbPYtbDhzNK9mwzvBOnnfH8d1_YNfRsxJOJWQQ_Km9mD7LdHma9yEvIUF9TigKbQkvBnBoEOtTN3HneQ"/>
+</div>
+<span class="text-xs text-slate-600 dark:text-slate-400 font-medium">Dr. Reynolds</span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="text-xs font-semibold">PDF</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Older Records Table -->
+<section class="pb-24">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Archived Records</h3>
+<div class="bg-white dark:bg-[#1a2230] rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30">
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Document Name</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider hidden sm:table-cell">Type</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider hidden md:table-cell">Doctor</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Annual Physical Report</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">2.4 MB</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                                                General
+                                            </span>
+</td>
+<td class="py-4 px-6 hidden md:table-cell">
+<p class="text-sm text-slate-600 dark:text-slate-400">Dr. S. Vance</p>
+</td>
+<td class="py-4 px-6">
+<p class="text-sm text-slate-600 dark:text-slate-400">Aug 15, 2023</p>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">image</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors">X-Ray Right Wrist</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">15.8 MB</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
+                                                Imaging
+                                            </span>
+</td>
+<td class="py-4 px-6 hidden md:table-cell">
+<p class="text-sm text-slate-600 dark:text-slate-400">Dr. L. Chen</p>
+</td>
+<td class="py-4 px-6">
+<p class="text-sm text-slate-600 dark:text-slate-400">Jul 02, 2023</p>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Lipitor 20mg</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">1.1 MB</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+                                                Prescription
+                                            </span>
+</td>
+<td class="py-4 px-6 hidden md:table-cell">
+<p class="text-sm text-slate-600 dark:text-slate-400">Dr. Reynolds</p>
+</td>
+<td class="py-4 px-6">
+<p class="text-sm text-slate-600 dark:text-slate-400">Jun 10, 2023</p>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</div>
+<!-- Floating Action Button Area -->
+<div class="absolute bottom-6 right-6 z-20">
+<button class="flex items-center justify-center gap-2 h-14 pl-6 pr-8 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[24px]">upload_file</span>
+<span class="font-bold text-base">Upload New Record</span>
+</button>
+</div>
+<!-- Mobile Navigation Overlay (Hidden by default, simplistic representation for desktop view) -->
+<div class="lg:hidden fixed bottom-0 left-0 w-full h-16 bg-white dark:bg-[#1a2230] border-t border-slate-200 dark:border-slate-800 flex items-center justify-around z-50">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">shield_lock</span>
+<span class="text-[10px] font-medium">Vault</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Calendar</span>
+</a>
+</div>
+</main>
+</div>
+</body></html>

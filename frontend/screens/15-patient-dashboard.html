@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MyMedic Patient Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc",
+                        "primary-light": "#E6F0FF",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .icon-filled {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#101418] dark:text-white flex h-screen overflow-hidden antialiased selection:bg-primary selection:text-white">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col w-72 bg-white dark:bg-[#1a2634] border-r border-gray-100 dark:border-gray-800 h-full flex-shrink-0 z-20">
+<div class="p-6 pb-2">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-primary/10 flex items-center justify-center rounded-xl size-10 text-primary">
+<span class="material-symbols-outlined text-2xl">local_hospital</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-lg font-bold leading-none tracking-tight">MyMedic</h1>
+<p class="text-slate-400 text-xs font-medium tracking-wide uppercase mt-1">Clinical Luxury</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined icon-filled">grid_view</span>
+<span class="text-sm font-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-medium">My Care Team</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">Medical Records</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="text-sm font-medium">Billing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-gray-50 dark:border-gray-800">
+<div class="flex items-center gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
+<img alt="Portrait of Alexander" class="size-10 rounded-full object-cover ring-2 ring-white dark:ring-gray-700" data-alt="Portrait of a smiling man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf5teHREefJczxKqdNze_9t9aASmQ5XN1Nr1XCANQoWYCjeQMQppYG2WaOqd421y1qyca8FBwUq47j0f5ZlP0rS_hhnUK0ZuEt_F236j8V6hWgy8BLrITTkPqm0pvc1riU_6zqd_r43nMtvpaFxK0jxJQtbLfnTXW7CoO2xLObf-VU478eClKW2qSLEnYNA4eRybmrEXYALVAg5XPRaBnartIbPn4tSszNPz6Wpy7f5_QTYVR6K3YjBFmW2hQVZGbWp-lwLPZ2Vl4"/>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-bold truncate">Alexander G.</p>
+<p class="text-xs text-slate-400 truncate">Premium Member</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full relative overflow-y-auto overflow-x-hidden bg-background-light dark:bg-background-dark">
+<!-- Top Mobile Header -->
+<header class="md:hidden sticky top-0 z-30 bg-white/80 dark:bg-[#1a2634]/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="bg-primary/10 flex items-center justify-center rounded-lg size-8 text-primary">
+<span class="material-symbols-outlined text-lg">local_hospital</span>
+</div>
+<span class="font-bold text-lg">MyMedic</span>
+</div>
+<button class="text-slate-500">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="max-w-[1200px] mx-auto w-full p-6 md:p-8 lg:p-10 space-y-8">
+<!-- Welcome Section -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                        Good morning, Alexander
+                    </h2>
+<p class="text-slate-500 text-lg">Your health journey continues here.</p>
+</div>
+<div class="flex gap-3">
+<button class="size-10 rounded-full bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 flex items-center justify-center text-slate-500 hover:text-primary transition shadow-sm">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="size-10 rounded-full bg-white dark:bg-white/10 border border-gray-200 dark:border-white/10 flex items-center justify-center text-slate-500 hover:text-primary transition shadow-sm">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</section>
+<!-- Hero CTA Card -->
+<section class="relative overflow-hidden rounded-3xl bg-white dark:bg-[#1a2634] shadow-soft border border-gray-100 dark:border-white/5 p-8 md:p-12">
+<!-- Abstract Background Gradient -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary-light/50 to-transparent dark:from-primary/20 dark:to-transparent pointer-events-none"></div>
+<div class="relative z-10 max-w-2xl flex flex-col gap-6">
+<div class="space-y-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-primary text-xs font-bold uppercase tracking-wider w-fit">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                            Quarterly Check-up
+                        </div>
+<h3 class="text-3xl md:text-4xl font-bold leading-tight text-slate-900 dark:text-white">
+                            Your health is our priority.
+                        </h3>
+<p class="text-slate-500 text-lg leading-relaxed max-w-lg">
+                            Schedule your comprehensive quarterly check-up with our specialists today to maintain your premium health status.
+                        </p>
+</div>
+<button class="bg-primary hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 w-fit flex items-center gap-2">
+<span>Book Appointment</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Upcoming Appointments Widget -->
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Upcoming Appointment</h3>
+<a class="text-primary text-sm font-bold hover:underline" href="#">View All</a>
+</div>
+<div class="group bg-white dark:bg-[#1a2634] rounded-2xl p-6 shadow-card hover:shadow-soft transition-all border border-gray-100 dark:border-white/5 flex flex-col sm:flex-row gap-6">
+<div class="relative w-full sm:w-48 h-48 sm:h-auto flex-shrink-0">
+<img alt="Doctor portrait" class="w-full h-full object-cover rounded-xl shadow-md" data-alt="Female doctor in white coat smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf_cUpwZCJuApEylftjjU0jDsWecsWv2c3ZJnt-gHIKctdPkygsoOhqw5LsTZ2-WB42lHt_ClF_goZVGBRCpQG4kdzWq2E8NCbUP-te2WHbY8Mc-3bip5mdBJmLhXnkj9Eunu0PjYjAllxoJJ3SfrQiQIf3XC-waJMysJhBh32aL84TVjCtyd6VnoNiVS5Lb5RCmwICoNak84B9FSKoCqTYueduwQF2R9lRPqeNbEPQp5fgKEXp1Ldmv8Is9MCk60DHtAg2JSO-Aw"/>
+<div class="absolute top-2 left-2 bg-white/90 dark:bg-black/60 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-green-500 text-base icon-filled">verified</span>
+                                Verified
+                            </div>
+</div>
+<div class="flex flex-col justify-between flex-1 py-1">
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-2 text-sm text-slate-500">
+<span class="flex items-center gap-1 bg-slate-100 dark:bg-white/5 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+                                        Oct 24, 2023
+                                    </span>
+<span class="flex items-center gap-1 bg-slate-100 dark:bg-white/5 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                        10:00 AM
+                                    </span>
+</div>
+<h4 class="text-xl font-bold text-slate-900 dark:text-white">Dr. Sarah Jennings</h4>
+<p class="text-primary font-medium">Cardiologist</p>
+<p class="text-slate-400 text-sm mt-2 line-clamp-2">
+                                    Specialist in preventive cardiology and heart health management. 15 years of experience in premium care.
+                                </p>
+</div>
+<div class="flex items-center gap-3 mt-6 pt-6 border-t border-gray-100 dark:border-white/5">
+<button class="flex-1 bg-primary-light/50 dark:bg-primary/20 hover:bg-primary-light dark:hover:bg-primary/30 text-primary font-bold py-2.5 px-4 rounded-xl transition-colors text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">videocam</span>
+                                    Start Call
+                                </button>
+<button class="flex-1 bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-300 font-bold py-2.5 px-4 rounded-xl transition-colors text-sm flex items-center justify-center gap-2">
+                                    View Details
+                                </button>
+</div>
+</div>
+</div>
+<!-- Quick Vitals Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-[#1a2634] p-4 rounded-2xl shadow-card border border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="p-1.5 rounded-lg bg-red-50 text-red-500">
+<span class="material-symbols-outlined text-xl icon-filled">favorite</span>
+</span>
+<span class="text-xs font-bold text-slate-400 uppercase">Heart Rate</span>
+</div>
+<p class="text-2xl font-extrabold">72 <span class="text-sm font-medium text-slate-400">bpm</span></p>
+<p class="text-xs text-green-500 font-medium mt-1 flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                Normal
+                            </p>
+</div>
+<div class="bg-white dark:bg-[#1a2634] p-4 rounded-2xl shadow-card border border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="p-1.5 rounded-lg bg-blue-50 text-blue-500">
+<span class="material-symbols-outlined text-xl icon-filled">water_drop</span>
+</span>
+<span class="text-xs font-bold text-slate-400 uppercase">Blood Pressure</span>
+</div>
+<p class="text-2xl font-extrabold">118/78</p>
+<p class="text-xs text-green-500 font-medium mt-1 flex items-center">
+<span class="material-symbols-outlined text-sm">check</span>
+                                Optimal
+                            </p>
+</div>
+<div class="bg-white dark:bg-[#1a2634] p-4 rounded-2xl shadow-card border border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="p-1.5 rounded-lg bg-orange-50 text-orange-500">
+<span class="material-symbols-outlined text-xl icon-filled">device_thermostat</span>
+</span>
+<span class="text-xs font-bold text-slate-400 uppercase">Temp</span>
+</div>
+<p class="text-2xl font-extrabold">98.4 <span class="text-sm font-medium text-slate-400">°F</span></p>
+<p class="text-xs text-slate-400 font-medium mt-1">
+                                Last: 2 days ago
+                            </p>
+</div>
+<div class="bg-white dark:bg-[#1a2634] p-4 rounded-2xl shadow-card border border-gray-100 dark:border-white/5 flex flex-col justify-center items-center text-center gap-1 cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition">
+<span class="material-symbols-outlined text-primary text-3xl">add_circle</span>
+<span class="text-xs font-bold text-primary">Log Vitals</span>
+</div>
+</div>
+</div>
+<!-- Right Sidebar / Quick Actions -->
+<div class="flex flex-col gap-6">
+<!-- Quick Actions -->
+<div class="bg-white dark:bg-[#1a2634] p-6 rounded-2xl shadow-card border border-gray-100 dark:border-white/5">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-primary-light hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary-light transition-colors group">
+<span class="bg-white dark:bg-white/10 p-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">pill</span>
+</span>
+<span class="text-xs font-bold">Refill Rx</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-primary-light hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary-light transition-colors group">
+<span class="bg-white dark:bg-white/10 p-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">lab_profile</span>
+</span>
+<span class="text-xs font-bold">Lab Results</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-primary-light hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary-light transition-colors group">
+<span class="bg-white dark:bg-white/10 p-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">chat_bubble</span>
+</span>
+<span class="text-xs font-bold">Chat</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-primary-light hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary-light transition-colors group">
+<span class="bg-white dark:bg-white/10 p-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">history</span>
+</span>
+<span class="text-xs font-bold">History</span>
+</button>
+</div>
+</div>
+<!-- Health Tips / Promo -->
+<div class="relative overflow-hidden rounded-2xl bg-[#0F1723] p-6 text-white shadow-lg">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/80 to-purple-900/80 opacity-60"></div>
+<img alt="Person meditating outdoors" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50" data-alt="Person meditating against a sunset background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqC3-2ichnKXxDjpjVL1S_ValILkWSuTrl52lgU7AL_HJfAhQXcZkuf1eL1AVZc6eskO3X99GFYeq9jCTJ9Q3uy5rtiI7KZeEsx_Hi5P6OYm9Kb4VT89DgiLr5EVOnJzEvu_y7alyHIupdDRFYZ8MtCkeV89k4vaahzFsAyr2fxIn1amPTVBx__Ta7mcwetEsIZ8DJnM3E_-n62cFJMFpqBbl-tY0hNVefizSlECa2KLmgTmRlGTEUGOFZs3knCY0gvMuwMGZDEhw"/>
+<div class="relative z-10">
+<span class="inline-block px-2 py-1 rounded bg-white/20 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider mb-3">Wellness Tip</span>
+<h4 class="text-lg font-bold mb-2">Mindfulness Matters</h4>
+<p class="text-sm text-gray-200 mb-4">Discover how 10 minutes of daily meditation can improve your heart health.</p>
+<button class="text-xs font-bold underline decoration-primary decoration-2 underline-offset-4 hover:text-primary-light transition">Read Article</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation for Mobile -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-[#1a2634] border-t border-gray-100 dark:border-gray-800 pb-safe z-40">
+<div class="flex justify-around items-center p-2">
+<button class="flex flex-col items-center gap-1 p-2 text-primary">
+<span class="material-symbols-outlined icon-filled">grid_view</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-slate-400">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-medium">Schedule</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-slate-400">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px] font-medium">Records</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

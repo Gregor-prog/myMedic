@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MyMedic - Earnings &amp; Invoices</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc", // Deep medical blue
+                        "primary-light": "#e6f0ff", // Soft blue background
+                        "secondary": "#10B981", // Emerald green
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                        "neutral-surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 82, 204, 0.05)',
+                        'card': '0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for table if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display antialiased">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-[#1a2634] border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">medical_services</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">MyMedic</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex gap-8">
+<a class="text-slate-500 hover:text-primary font-medium text-sm transition-colors" href="#">Patients</a>
+<a class="text-slate-500 hover:text-primary font-medium text-sm transition-colors" href="#">Schedule</a>
+<a class="text-primary font-bold text-sm bg-primary/5 px-3 py-1 rounded-full" href="#">Earnings</a>
+<a class="text-slate-500 hover:text-primary font-medium text-sm transition-colors" href="#">Messages</a>
+</nav>
+<!-- Right Actions -->
+<div class="flex items-center gap-3">
+<button class="size-10 flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a2634]"></span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<button class="flex items-center gap-2 pl-1 pr-2 py-1 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="size-8 rounded-full bg-slate-200 overflow-hidden border border-white shadow-sm">
+<img alt="Profile of Dr. Sarah Smith" class="w-full h-full object-cover" data-alt="Professional doctor portrait smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8n7uKFlAggu0adMljZsDmUOWdvmW5Jxhe5Jn1sYANJl-NRR8OMkNGuH_otlDzjrTIPh-h-8ovf4A0_Hobsufd1fB7ziSD6Ptk84rB1eGtB1Hf7WjA3uEjJar-HC9hHnus_QYVfLsWRMZikMmgJQZ4poNHzXp7rhNdLVZcA8LNhZaCvrF1ccfMmcBJILazlEjaN7QlvGH_bG9QcK0kDJ6sfOaNXwd105d3XVchHTINrEanqNk9rgyiF2qgN7zOWIA6uTdIsykyVIA"/>
+</div>
+<div class="hidden sm:block text-left">
+<p class="text-xs font-bold text-slate-900 dark:text-white leading-none">Dr. Smith</p>
+<p class="text-[10px] text-slate-500 mt-0.5 leading-none">Cardiology</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-lg">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Earnings &amp; Invoices</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Track your revenue and manage patient invoices.</p>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-[#1a2634] p-1 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+<button class="px-3 py-1.5 text-sm font-medium rounded-md bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm">This Month</button>
+<button class="px-3 py-1.5 text-sm font-medium rounded-md text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">Last Month</button>
+<button class="px-3 py-1.5 text-sm font-medium rounded-md text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">YTD</button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Column 1: Financial Summary Cards -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Total Earnings Card -->
+<div class="bg-primary-light dark:bg-primary/20 rounded-2xl p-6 shadow-soft relative overflow-hidden group">
+<!-- Decor element -->
+<div class="absolute -right-6 -top-6 size-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex items-start justify-between mb-2">
+<div class="p-2 bg-white/60 dark:bg-white/10 rounded-lg backdrop-blur-sm text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<span class="inline-flex items-center gap-1 text-xs font-bold text-secondary bg-white/60 dark:bg-white/10 px-2 py-1 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                +12.5%
+                            </span>
+</div>
+<p class="text-primary/70 dark:text-primary-light/70 font-medium text-sm uppercase tracking-wider mb-1">Total Earnings</p>
+<h3 class="text-4xl font-extrabold text-primary dark:text-white tracking-tight">$124,500<span class="text-2xl text-primary/60 dark:text-white/60">.00</span></h3>
+<p class="text-sm text-primary/60 dark:text-primary-light/60 mt-2 font-medium">Updated 2 mins ago</p>
+</div>
+</div>
+<!-- Pending Payout Card -->
+<div class="bg-white dark:bg-[#1a2634] rounded-2xl p-6 shadow-card border border-slate-100 dark:border-slate-800 flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">pending</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-medium text-sm uppercase tracking-wider">Pending Payout</p>
+</div>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-1">$8,250<span class="text-xl text-slate-400 dark:text-slate-600">.00</span></h3>
+<p class="text-sm text-slate-400 dark:text-slate-500">Expected by Nov 01, 2023</p>
+</div>
+<div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+<button class="w-full py-2.5 px-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-semibold text-sm transition-colors flex items-center justify-center gap-2 group">
+                            View Payout Schedule
+                            <span class="material-symbols-outlined text-base group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Column 2: Chart Section -->
+<div class="lg:col-span-2 bg-white dark:bg-[#1a2634] rounded-2xl p-6 shadow-card border border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Monthly Revenue</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Income breakdown for current fiscal year</p>
+</div>
+<button class="size-8 flex items-center justify-center rounded-lg text-slate-400 hover:bg-slate-50 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Chart Visualization -->
+<div class="h-64 flex items-end justify-between gap-2 sm:gap-4 pb-2 relative">
+<!-- Grid Lines Background -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none z-0">
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700 border-dashed border-t border-slate-200 dark:border-slate-700"></div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700 border-dashed border-t border-slate-200 dark:border-slate-700"></div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700 border-dashed border-t border-slate-200 dark:border-slate-700"></div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700 border-dashed border-t border-slate-200 dark:border-slate-700"></div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700 border-dashed border-t border-slate-200 dark:border-slate-700"></div>
+</div>
+<!-- Bars -->
+<!-- Helper class for bars to keep them consistent -->
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all duration-300 hover:bg-primary/40 h-[40%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$8.5k</div>
+</div>
+<span class="text-xs font-semibold text-slate-400 group-hover:text-primary transition-colors">Jan</span>
+</div>
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all duration-300 hover:bg-primary/40 h-[35%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$7.2k</div>
+</div>
+<span class="text-xs font-semibold text-slate-400 group-hover:text-primary transition-colors">Feb</span>
+</div>
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all duration-300 hover:bg-primary/40 h-[55%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$11.5k</div>
+</div>
+<span class="text-xs font-semibold text-slate-400 group-hover:text-primary transition-colors">Mar</span>
+</div>
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all duration-300 hover:bg-primary/40 h-[45%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$9.8k</div>
+</div>
+<span class="text-xs font-semibold text-slate-400 group-hover:text-primary transition-colors">Apr</span>
+</div>
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all duration-300 hover:bg-primary/40 h-[60%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$12.5k</div>
+</div>
+<span class="text-xs font-semibold text-slate-400 group-hover:text-primary transition-colors">May</span>
+</div>
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-emerald-500 rounded-t-lg transition-all duration-300 hover:bg-emerald-600 h-[85%] relative shadow-[0_4px_12px_rgba(16,185,129,0.3)]">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$18.2k</div>
+</div>
+<span class="text-xs font-semibold text-emerald-600 font-bold">Jun</span>
+</div>
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all duration-300 hover:bg-primary/40 h-[70%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$14.5k</div>
+</div>
+<span class="text-xs font-semibold text-slate-400 group-hover:text-primary transition-colors">Jul</span>
+</div>
+<div class="group flex flex-col items-center flex-1 z-10 h-full justify-end gap-2 cursor-pointer">
+<div class="w-full max-w-[40px] bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all duration-300 hover:bg-primary/40 h-[20%] relative">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded pointer-events-none whitespace-nowrap transition-opacity shadow-lg">$4.1k</div>
+</div>
+<span class="text-xs font-semibold text-slate-400 group-hover:text-primary transition-colors">Aug</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Transactions Table -->
+<div class="bg-white dark:bg-[#1a2634] rounded-2xl shadow-card border border-slate-100 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Recent Transactions</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Latest invoices and payments from private patients</p>
+</div>
+<div class="flex gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-sm w-full sm:w-64 focus:ring-2 focus:ring-primary/50 text-slate-900 dark:text-white" placeholder="Search patient..." type="text"/>
+</div>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                     </button>
+</div>
+</div>
+<!-- Table Header -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">Patient Name</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">Service Date</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">Amount</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="py-4 px-6 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Invoice</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+<!-- Row 1 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full overflow-hidden bg-slate-100">
+<img alt="Portrait of Eleanor P." class="w-full h-full object-cover" data-alt="Woman portrait looking professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ3Fw1UV4DtQcZ5hoOhvYrFXMZzyUsh8V68IDF_UVBWkL6j4w7BD9OB9kojdGbLq0sUAPMkDU2qYCAumHfkvY8RxD2mT8EwN6HYBlz_QR3HD5_YNY0a5F5ApQwQd7LxNmyirbaMzRKeeH0lUvGgmBA4UmarJpGFYdAEfxrGilNVclJFdSztPy-CpZ2Z3DNDPg0IAA6NhFZ9_ON75ybLkJya8X3yw13JPXV5lv3sTz5_pxTx7seXVkMLwWt54ekrbp0aoSJk2n861k"/>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Eleanor Pena</p>
+<p class="text-xs text-slate-500">ID: #MM-9281</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-slate-600 dark:text-slate-300">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-400">calendar_today</span>
+                                    Oct 24, 2023
+                                </div>
+</td>
+<td class="py-4 px-6 text-sm font-bold text-slate-900 dark:text-white">$4,500.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+<span class="size-1.5 rounded-full bg-emerald-500 mr-1.5"></span>
+                                    Paid
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="size-9 inline-flex items-center justify-center rounded-lg text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors" title="Download Invoice">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center text-slate-500 font-bold bg-slate-200 dark:bg-slate-700">
+                                        AV
+                                    </div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Arthur Vasquez</p>
+<p class="text-xs text-slate-500">ID: #MM-8832</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-slate-600 dark:text-slate-300">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-400">calendar_today</span>
+                                    Oct 22, 2023
+                                </div>
+</td>
+<td class="py-4 px-6 text-sm font-bold text-slate-900 dark:text-white">$2,100.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border border-amber-100 dark:border-amber-800">
+<span class="size-1.5 rounded-full bg-amber-500 mr-1.5 animate-pulse"></span>
+                                    Processing
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="size-9 inline-flex items-center justify-center rounded-lg text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors" title="Download Invoice">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full overflow-hidden bg-slate-100">
+<img alt="Portrait of Cameron W." class="w-full h-full object-cover" data-alt="Man portrait smiling professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUMt97sph3WSoguvFEYahpdZNXyiPzmbN3fjfkVY3h4v6ifsGNQ-hjm1ukcitPhCvZSNBnQoZNOsaziCogDXEw2kDiewca71LlYF6maoOZLNstBQf0CsGVEzJSL2lFStC4liNMWCSOwvrO97-_oOMOF-j7jp-e2DB3VO-LdbufjKO2HWuHvgF_fDWGM8z-cvKfVez-C-7WJ5kAymd3WmTk1z40-iP4rk-THcMwpjtk1lp40iaqpaChjSnXf6OwzeMQ-vhZP91-l0I"/>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Cameron Williamson</p>
+<p class="text-xs text-slate-500">ID: #MM-7721</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-slate-600 dark:text-slate-300">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-400">calendar_today</span>
+                                    Oct 19, 2023
+                                </div>
+</td>
+<td class="py-4 px-6 text-sm font-bold text-slate-900 dark:text-white">$8,450.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+<span class="size-1.5 rounded-full bg-emerald-500 mr-1.5"></span>
+                                    Paid
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="size-9 inline-flex items-center justify-center rounded-lg text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors" title="Download Invoice">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full overflow-hidden bg-slate-100">
+<img alt="Portrait of Jane C." class="w-full h-full object-cover" data-alt="Woman business portrait neutral" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE2wJJxDkkvi8iu2_xvB2HITHAsEHUZoEfPLAFoc7fAsZfQDCD7X_fyFwWMWWquva1zpHwUSHjEaD0ZaNRL97xumNMVrABdx7bDU0hZO417bFmTWkEFGaQFeaC808_Se6rx56mUmT1LIIz7d8_3s3LAPHCS2AverlDi3NLlxWJQsqr0-SUxiKKNnFHZxJN1me7PwFNTrpVrqqcO4SQ1YV4I6YTfzAUI27ZUr0ACojZ2gf7YK1UcIc9-fAsk3otF580pu1oLSFS5sc"/>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Jane Cooper</p>
+<p class="text-xs text-slate-500">ID: #MM-1209</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-slate-600 dark:text-slate-300">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-400">calendar_today</span>
+                                    Oct 15, 2023
+                                </div>
+</td>
+<td class="py-4 px-6 text-sm font-bold text-slate-900 dark:text-white">$3,200.00</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+<span class="size-1.5 rounded-full bg-emerald-500 mr-1.5"></span>
+                                    Paid
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="size-9 inline-flex items-center justify-center rounded-lg text-slate-400 hover:text-primary hover:bg-primary/5 transition-colors" title="Download Invoice">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="bg-slate-50 dark:bg-slate-800/30 p-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+<p class="text-sm text-slate-500 dark:text-slate-400">Showing 4 of 28 transactions</p>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-sm font-medium rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 disabled:opacity-50 transition-colors" disabled="">Previous</button>
+<button class="px-3 py-1.5 text-sm font-medium rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Next</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

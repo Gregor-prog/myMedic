@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Profile Detail - MyMedic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc",
+                        "primary-light": "#E6F0FF",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                        "emerald": "#10b981", 
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 82, 204, 0.05)',
+                        'float': '0 10px 40px -10px rgba(0, 82, 204, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Public Sans", sans-serif;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#101418] dark:text-white font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 w-full bg-white/90 dark:bg-[#0f1723]/90 backdrop-blur-md border-b border-[#f0f2f5] dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">local_hospital</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-[#101418] dark:text-white">MyMedic</span>
+</div>
+<!-- Desktop Nav Links (Simplified) -->
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="#">Find Doctors</a>
+<a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="#">Locations</a>
+<a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="#">My Appointments</a>
+</div>
+<!-- Profile Actions -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-primary/5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-cover bg-center ring-2 ring-white dark:ring-gray-800 shadow-sm" data-alt="User profile thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBnB8uyR_60dSk4Que6m6trJsFYKKBQweFiinKSwr_P92Fb5WIuQgbcvBa2miW66Tv49ZFvhn2zjFAjgrA5J3Ev3dVkSOYSdt6wyKjZfAV2pA0MoCygKDWkGLr2cqVyXbh1OLbjT7iGZhsNs9yPoIAWSCOnSNPPVYPjdBEYgSqoHT9MjH_18Yf3pBeP_Ymvt7iS4zcDu51pGKNOuQuwW2Vo3-0hViqaBFXDWBDoMtzzcnMFAfBHl7GUjxiONIJq4rcoZCjMhbR5ZMU');"></div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 pb-24">
+<!-- Breadcrumbs -->
+<nav class="flex mb-8 text-sm text-gray-500 dark:text-gray-400">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="mx-2">/</span>
+<a class="hover:text-primary" href="#">Cardiology</a>
+<span class="mx-2">/</span>
+<span class="text-[#101418] dark:text-white font-medium">Dr. Sarah Mitchell</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<!-- Left Column: Hero Image & Quick Stats (Takes 5 cols on large screens) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Hero Image Card -->
+<div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-soft group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Professional portrait of Dr. Sarah Mitchell in medical coat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9odPQthSn3oeQppfD6ZcMruiCi2Z36f4T9Y6WoyNQV43KqKMBoZJ0zJKAe7WQVytyS4w8XrmK3wHlyMDZ7Lu8eXZMVm29heDS8ZrnA20ZgHXYZi2WWYiG-TQNFUPBRvojkkBvl8ZH9kXKvnojHB3ZAPYe2SkLTT45QnWjomzUG__wGZCBsvQDYSc8HzqCXRDA9EMe79Uu8iOYd9CMhN5uOgEYJmdd9VcKgXB_TF_4ojsNKPqplqi0cHNBSHiLz4BRRueisR5hBxs');">
+</div>
+<!-- Gradient overlay for text readability if needed -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<!-- Floating Badge -->
+<div class="absolute top-4 left-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-emerald text-sm filled">verified</span>
+<span class="text-xs font-bold uppercase tracking-wider text-emerald">Emerald Verified</span>
+</div>
+</div>
+<!-- Quick Actions (Desktop only - Mobile has sticky bottom) -->
+<div class="hidden lg:flex gap-3">
+<button class="flex-1 h-12 flex items-center justify-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-semibold text-[#101418] dark:text-white shadow-sm">
+<span class="material-symbols-outlined text-[20px]">bookmark_border</span>
+                        Save Profile
+                    </button>
+<button class="flex-1 h-12 flex items-center justify-center gap-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-sm font-semibold text-[#101418] dark:text-white shadow-sm">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+                        Share
+                    </button>
+</div>
+</div>
+<!-- Right Column: Details & Bio (Takes 7 cols on large screens) -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<!-- Header Info -->
+<div class="flex flex-col gap-4 border-b border-gray-100 dark:border-gray-800 pb-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary font-semibold text-sm tracking-wide uppercase">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                            Chief Cardiologist
+                        </div>
+<h1 class="text-4xl md:text-5xl font-bold text-[#101418] dark:text-white tracking-tight leading-[1.1]">
+                            Dr. Sarah Mitchell, MD
+                        </h1>
+<div class="flex items-center gap-4 text-base text-gray-500 dark:text-gray-400 mt-1">
+<span>Mass General Hospital</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<div class="flex items-center gap-1 text-[#101418] dark:text-white font-medium">
+<span class="material-symbols-outlined text-yellow-400 text-lg filled" style="font-variation-settings: 'FILL' 1">star</span>
+                                4.9 <span class="text-gray-400 font-normal">(120 Reviews)</span>
+</div>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full border border-primary/10">Cardiology</span>
+<span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-full border border-gray-200 dark:border-gray-700">Preventative Care</span>
+<span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-full border border-gray-200 dark:border-gray-700">Heart Health</span>
+<span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm font-medium rounded-full border border-gray-200 dark:border-gray-700">Diagnostics</span>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 flex flex-col gap-1 items-start">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/30 text-primary rounded-lg mb-2">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<span class="text-2xl font-bold text-[#101418] dark:text-white">15+</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Years Experience</span>
+</div>
+<div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 flex flex-col gap-1 items-start">
+<div class="p-2 bg-purple-50 dark:bg-purple-900/30 text-purple-600 rounded-lg mb-2">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="text-2xl font-bold text-[#101418] dark:text-white">5k+</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Patients Served</span>
+</div>
+<div class="col-span-2 sm:col-span-1 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 flex flex-col gap-1 items-start">
+<div class="p-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald rounded-lg mb-2">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="text-2xl font-bold text-[#101418] dark:text-white">Harvard</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Medical School</span>
+</div>
+</div>
+<!-- Biography -->
+<div class="flex flex-col gap-4">
+<h2 class="text-2xl font-bold text-[#101418] dark:text-white">About Dr. Mitchell</h2>
+<div class="prose prose-blue dark:prose-invert max-w-none text-gray-600 dark:text-gray-300 leading-relaxed text-lg font-light">
+<p>
+                            Dr. Mitchell is a leading expert in preventative cardiology with over 15 years of experience serving elite clientele. She specializes in personalized heart health plans and advanced diagnostics, focusing on longevity and holistic well-being.
+                        </p>
+<p class="mt-4">
+                            Previously serving as the Director of Cardiology at Mount Sinai, she brings a wealth of knowledge in treating complex cardiovascular conditions. Her approach combines cutting-edge medical technology with compassionate, patient-centered care.
+                        </p>
+</div>
+</div>
+<!-- Reviews Preview -->
+<div class="flex flex-col gap-6 pt-6 border-t border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-bold text-[#101418] dark:text-white">Patient Reviews</h2>
+<a class="text-primary font-medium text-sm hover:underline" href="#">View all 120 reviews</a>
+</div>
+<!-- Single Review Card -->
+<div class="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-2xl">
+<div class="flex gap-4 items-start">
+<div class="size-10 rounded-full bg-cover bg-center shrink-0" data-alt="Reviewer profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuASfv0zmF7Mr0y8H_qhKZk70SciioCd0Yd3HtdwMjPrrUXautQkrbXYAEHEYEa3nHDsYqrdx1zWxY6TnU9a8yuU8eYvJYYVDFA_xSoxcYtvKiAjJpNc4mxWewA05pc4J-UCZkasFwwkuEydZiqoxFmQBCP4bo-KWSekLzug-O4zwkIf-14HJVi53oTqX6p0-sEZm8ZTGK0z1UNSxV5WeJoYE8dbhPliA4Zy7wAwtS0VLjX9OclI03uKWMSXrRwvmsG_V3FWI7zGilA');"></div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between w-full">
+<span class="font-bold text-[#101418] dark:text-white">Michael R.</span>
+<span class="text-xs text-gray-400">2 weeks ago</span>
+</div>
+<div class="flex text-yellow-400 text-sm mb-1">
+<span class="material-symbols-outlined text-[16px] filled" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-[16px] filled" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-[16px] filled" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-[16px] filled" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-[16px] filled" style="font-variation-settings: 'FILL' 1">star</span>
+</div>
+<p class="text-gray-600 dark:text-gray-300 italic">"An exceptional experience. Dr. Mitchell's attention to detail and calm demeanor made me feel completely at ease during my consultation. The clinic feels more like a spa than a hospital."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Location Map Preview (Static Image) -->
+<div class="flex flex-col gap-4 pt-6">
+<h2 class="text-2xl font-bold text-[#101418] dark:text-white">Clinic Location</h2>
+<div class="w-full h-48 rounded-2xl overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Map view of clinic location in the city" data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt7jmYFphxeuej7olViqyI4Xyee7kLSlW4EFfarJNMgsa8-_3a2oWt-pFLOvndJQ_45a5RqXAgs1l1I3zuQ-GsY4DZYdL_Zrhgv52p66vpjdG5kSAq6W6-Hg9vJYMDQfYs1HCGZM6lhovke0ORjwoFOA14TSgCQcaGom2W17ZRl83D_mIv31S6L5IOEzuylbdTLatUWQus1_4CBGpK4Phg7Ap9Po-I9kYQnWF1lvOvV026zhdENfsX5MG6l0ceY5i1N3c8onJ2tUo');"></div>
+<div class="absolute bottom-4 left-4 bg-white dark:bg-gray-800 p-3 rounded-xl shadow-lg flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide font-bold">Address</span>
+<span class="text-sm font-medium text-[#101418] dark:text-white">880 Fifth Avenue, New York, NY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-white dark:bg-[#0f1723] border-t border-gray-200 dark:border-gray-800 p-4 shadow-float z-40">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<!-- Price/Details (Hidden on very small screens to prioritize button) -->
+<div class="hidden sm:flex flex-col">
+<span class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">Consultation Fee</span>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-[#101418] dark:text-white">$450</span>
+<span class="text-sm text-gray-500 dark:text-gray-400 font-medium">/ 60 min</span>
+</div>
+</div>
+<!-- Mobile Only Share/Save -->
+<div class="flex lg:hidden gap-2">
+<button class="p-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+</div>
+<!-- Primary Action -->
+<button class="flex-1 sm:flex-none sm:min-w-[300px] h-14 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold text-lg shadow-lg shadow-primary/30 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
+<span>Select Appointment</span>
+<span class="material-symbols-outlined">calendar_month</span>
+</button>
+</div>
+</div>
+</body></html>

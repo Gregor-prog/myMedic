@@ -1,0 +1,21 @@
+# Backend (Python)
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/.env
+backend/.venv
+backend/venv/
+backend/mymedic.db
+
+# Frontend (Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.DS_Store
+frontend/.env
+frontend/.env.local
+
+# General
+.DS_Store
+*.log
+.vscode/
+.idea/

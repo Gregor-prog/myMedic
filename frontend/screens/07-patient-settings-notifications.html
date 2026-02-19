@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MyMedic - Patient Settings</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc",
+                        "primary-light": "#E6F0FF", // Derived soft accent
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2433",
+                        "text-primary": "#101418",
+                        "text-secondary": "#5e718d",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", 
+                        "lg": "1rem", 
+                        "xl": "1.5rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Toggles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0052cc;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0052cc;
+        }
+        
+        /* Hide scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-primary antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white dark:bg-surface-dark border-b border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">local_hospital</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">MyMedic</span>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="#">Appointments</a>
+<a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-sm font-medium text-gray-500 hover:text-primary transition-colors" href="#">Records</a>
+</nav>
+<!-- User Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex p-2 rounded-full text-gray-400 hover:text-primary hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-px bg-gray-200 dark:bg-gray-700 hidden sm:block"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-transparent group-hover:border-primary transition-all duration-300" data-alt="Profile picture of a male doctor or patient" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMg2rpH-cHIFL576oSfWPXKfi74oXX1bvtJ1PJdggH45YtALtNVypf1T2JtGQ3z87T5jMjfPpK-OLVOo-PEF0lQD8XDVtNsODTNWknNwdDGjb4kCZWPEIb9y9ZEFvAO1az2m785M2FCdM0YZk9PY7-q0Llt7_b--WTRhLalRp-S6QWUj-2tTN7DF_vVrWNQulh-CnPbP_29Ios_DLChebrziutw0trdFP0WVJuNjD4-4WkzOf1ym1WWNY-fkKr0gfKLVVBkElRobY');"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Sidebar / Profile Summary -->
+<aside class="w-full lg:w-80 flex-shrink-0 space-y-6">
+<!-- User Profile Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-cover bg-center ring-4 ring-primary-light dark:ring-primary/20" data-alt="User profile avatar close up" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDsumG99YaxqtBGZe2BEfxZmlx_3YhfvbcWj_iNaKlHclotR5RvjDsqG0gzB_HSGqkUJHG6eTCCM5g9WjseZ6DvteqBYOABy88puhqBM4Wo8gYKERG-EkCnWrjiI0zmdEkaBGwpygR6n6W0ZcUyBP_PKO1kEFAgeHCZ3nD_DMeereQ7_tv79k454Sc6V_kUWn-46jKnee9piHU_tpDZ7yZgiCvKKWIGMKGAUA0QDhvap4kPZsKfHLQXg2Qe-5Y5k76UqSBQcJlqjRk');"></div>
+<div class="absolute bottom-0 right-0 bg-green-500 w-5 h-5 rounded-full border-4 border-white dark:border-surface-dark"></div>
+</div>
+<h2 class="text-xl font-bold text-gray-900 dark:text-white">Alex Mercer</h2>
+<p class="text-sm font-medium text-primary mt-1">Platinum Member</p>
+<p class="text-xs text-gray-400 mt-2">Member since 2021</p>
+<button class="mt-6 w-full py-2.5 px-4 bg-primary-light text-primary font-semibold rounded-lg text-sm hover:bg-primary hover:text-white transition-all duration-200">
+                        View Public Profile
+                    </button>
+</div>
+<!-- Navigation Menu -->
+<nav class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="p-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/5 text-primary rounded-lg font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>General Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">security</span>
+<span>Privacy &amp; Security</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span>Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span>Billing &amp; Plans</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-lg font-medium transition-colors mt-2" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 space-y-8">
+<!-- Header -->
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">Settings &amp; Preferences</h1>
+<p class="text-gray-500 dark:text-gray-400">Manage your account settings, security preferences, and communication channels.</p>
+</div>
+<!-- Privacy & Security Section -->
+<section class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Privacy &amp; Security</h3>
+</div>
+</div>
+<div class="divide-y divide-gray-50 dark:divide-gray-800/50">
+<!-- Biometric Login -->
+<div class="p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors cursor-pointer group">
+<div class="flex flex-col gap-1">
+<span class="text-base font-medium text-gray-900 dark:text-white">Biometric Login</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Use FaceID or TouchID for faster, secure access.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- 2FA -->
+<div class="p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors cursor-pointer">
+<div class="flex flex-col gap-1">
+<span class="text-base font-medium text-gray-900 dark:text-white">Two-Factor Authentication</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Add an extra layer of security to your account.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Password Change -->
+<div class="p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<div class="flex flex-col gap-1">
+<span class="text-base font-medium text-gray-900 dark:text-white">Password</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Last changed 3 months ago.</span>
+</div>
+<button class="text-sm font-semibold text-primary hover:text-blue-700 transition-colors px-4 py-2 rounded-lg hover:bg-blue-50">
+                                Change
+                            </button>
+</div>
+</div>
+</section>
+<!-- Notifications Section -->
+<section class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Notifications</h3>
+</div>
+</div>
+<div class="divide-y divide-gray-50 dark:divide-gray-800/50">
+<!-- Appointment Reminders -->
+<div class="p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors cursor-pointer">
+<div class="flex flex-col gap-1">
+<span class="text-base font-medium text-gray-900 dark:text-white">Appointment Reminders</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Receive alerts 24 hours before your visit.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Secure Messages -->
+<div class="p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors cursor-pointer">
+<div class="flex flex-col gap-1">
+<span class="text-base font-medium text-gray-900 dark:text-white">Secure Messages</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Get notified when your doctor sends a message.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Health Tips -->
+<div class="p-6 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors cursor-pointer">
+<div class="flex flex-col gap-1">
+<span class="text-base font-medium text-gray-900 dark:text-white">Health Tips &amp; Insights</span>
+<span class="text-sm text-gray-500 dark:text-gray-400">Monthly curated health advice based on your profile.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Account Preferences Section -->
+<section class="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
+<div class="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-primary">
+<span class="material-symbols-outlined">tune</span>
+</div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Account Preferences</h3>
+</div>
+</div>
+<div class="p-6 grid gap-6 md:grid-cols-2">
+<!-- Language -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Language</label>
+<div class="relative">
+<select class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-3 pr-10 appearance-none">
+<option>English (US)</option>
+<option>French (FR)</option>
+<option>Spanish (ES)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Time Zone -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Time Zone</label>
+<div class="relative">
+<select class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-primary focus:border-primary block p-3 pr-10 appearance-none">
+<option>(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+<option>(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+<option>(GMT+00:00) London</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 pb-6 pt-2">
+<!-- Data Export -->
+<button class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+                            Download My Data
+                        </button>
+</div>
+</section>
+<!-- Actions Footer -->
+<div class="flex items-center justify-end gap-4 pt-4">
+<button class="px-6 py-3 rounded-xl text-sm font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        Cancel
+                    </button>
+<button class="px-8 py-3 rounded-xl text-sm font-bold text-white bg-primary shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-colors transform active:scale-95">
+                        Save Changes
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

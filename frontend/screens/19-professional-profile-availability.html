@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Professional Profile - Availability Focus</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a54c2",
+                        "primary-soft": "#E6F0FF",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101722",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] font-display antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f5] px-6 lg:px-10 py-3 bg-white sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111418]">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">medical_services</span>
+</div>
+<h2 class="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em]">MyMedic</h2>
+</div>
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-[#111418] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Doctors</a>
+<a class="text-[#111418] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Clinics</a>
+<a class="text-[#111418] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Concierge</a>
+<a class="text-[#111418] text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Membership</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 lg:gap-8 items-center">
+<label class="hidden md:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-[#60718a] flex border-none bg-[#f0f2f5] items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f5] focus:border-none h-full placeholder:text-[#60718a] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search specialists..." value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/10" data-alt="User avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6YvuAE1PCD8qm6REr9oB-qKZ5pQuR9Vy_zIAKi7ecYpEcFXGyDAJfuKCfHnxsSugXJIcWPGTj_aw3z0nKt9-i5FhkwW078qqkSdhJL1kUCdevnelWWewxZ-1dFfBdvdfCFzNxBIk_Grp4IRocQ8PZvQezsa8hLAEM8Z-X2i8ujEyR3UmkFJKz9hVRwxoTycSWM-JOfPpDJ_cuCmU_EFlH4uwn6NjLV5U1di8k9vxZRZGzcOZwDY-YrLfzxAXuqR_W3JWCcXzu6W4");'></div>
+</div>
+</header>
+<main class="layout-container flex grow flex-col w-full max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-8 gap-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 text-sm">
+<a class="text-[#60718a] hover:text-primary font-medium" href="#">Home</a>
+<span class="text-[#60718a] font-medium">/</span>
+<a class="text-[#60718a] hover:text-primary font-medium" href="#">Specialists</a>
+<span class="text-[#60718a] font-medium">/</span>
+<span class="text-primary font-medium">Neurology</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Profile & Bio -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Profile Header Card -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat bg-cover rounded-full w-32 h-32 md:w-40 md:h-40 shadow-md ring-4 ring-white" data-alt="Portrait of Dr. Sarah Jenkins" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXvIjaewCnRlunQ6HxYKZw-kEsnm2v2AaY0pj2UuyI6H7Un8HMBszLsMlz8gmTDCz6Uwmw8D03bdnfcmotDKtnLyqguCzXkTnRCaKtgbihi5Hde4HYFc-kjxxbkeJfHpffNKDoR3HtHS3iOlrNzjgG_GyFFAEJ5D6d2BDCSSxEBYGs4c3bQV0D94K7vVK1pEgjgjctZo_Yu0bJQFSysaN_eJEBxB2wSWGMO4OEt-JpVd3k6MeLVobRi0j9pjXrQrdOBd9ZdesTN1Y");'></div>
+<div class="absolute bottom-2 right-2 bg-green-500 border-2 border-white rounded-full p-1.5" title="Online Now">
+<span class="sr-only">Online</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 flex-1">
+<div class="flex items-center gap-2">
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wide">Top Rated</span>
+<div class="flex items-center gap-1 text-amber-400">
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="text-[#111418] text-sm font-semibold">4.9</span>
+<span class="text-[#60718a] text-sm font-normal">(120+ reviews)</span>
+</div>
+</div>
+<div>
+<h1 class="text-[#111418] text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-1">Dr. Sarah Jenkins, MD, PhD</h1>
+<p class="text-[#60718a] text-lg font-medium">Chief Neurologist</p>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 mt-2 text-sm text-[#60718a]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">apartment</span>
+<span>Johns Hopkins Hospital</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">school</span>
+<span>Harvard Medical School</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Clinical Expertise Section -->
+<div class="flex flex-col gap-4">
+<h2 class="text-[#111418] text-xl font-bold">Clinical Expertise</h2>
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 rounded-lg bg-primary-soft text-primary font-medium text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">neurology</span> Neurology
+                            </span>
+<span class="px-4 py-2 rounded-lg bg-primary-soft text-primary font-medium text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">accessibility_new</span> Spinal Disorders
+                            </span>
+<span class="px-4 py-2 rounded-lg bg-primary-soft text-primary font-medium text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">healing</span> Chronic Pain
+                            </span>
+<span class="px-4 py-2 rounded-lg bg-primary-soft text-primary font-medium text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">psychology</span> Neuropsychiatry
+                            </span>
+<span class="px-4 py-2 rounded-lg bg-primary-soft text-primary font-medium text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">science</span> Research
+                            </span>
+</div>
+</div>
+<!-- About / Bio Section -->
+<div class="flex flex-col gap-4">
+<h2 class="text-[#111418] text-xl font-bold">About Dr. Jenkins</h2>
+<div class="prose prose-slate max-w-none font-body text-[#111418]/80 leading-relaxed text-lg">
+<p>
+                                Dr. Sarah Jenkins is a pioneering neurologist with over 15 years of dedicated experience in treating complex spinal disorders and neurological conditions. As the Chief Neurologist at Johns Hopkins Hospital, she leads a team of specialists focused on minimally invasive surgical techniques that prioritize patient recovery and long-term wellness.
+                            </p>
+<p class="mt-4">
+                                Her approach combines cutting-edge medical technology with a deeply personalized care philosophy. Dr. Jenkins believes that understanding the patient's lifestyle and goals is just as critical as the diagnosis itself. She has published over 40 peer-reviewed papers on neuroplasticity and chronic pain management.
+                            </p>
+</div>
+</div>
+<!-- Credentials & Awards Carousel -->
+<div class="flex flex-col gap-4 overflow-hidden">
+<div class="flex justify-between items-end">
+<h2 class="text-[#111418] text-xl font-bold">Certificates &amp; Awards</h2>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2">
+<!-- Card 1 -->
+<div class="min-w-[200px] p-4 bg-white rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">workspace_premium</span>
+</div>
+<div>
+<p class="font-bold text-sm text-[#111418]">Top Doctor 2023</p>
+<p class="text-xs text-[#60718a]">Medical Association</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[200px] p-4 bg-white rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div>
+<p class="font-bold text-sm text-[#111418]">Board Certified</p>
+<p class="text-xs text-[#60718a]">Neurology Board</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[200px] p-4 bg-white rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">local_library</span>
+</div>
+<div>
+<p class="font-bold text-sm text-[#111418]">PhD Neuroscience</p>
+<p class="text-xs text-[#60718a]">Harvard University</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="min-w-[200px] p-4 bg-white rounded-xl border border-slate-100 shadow-sm flex flex-col items-center text-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+<div>
+<p class="font-bold text-sm text-[#111418]">Fellowship</p>
+<p class="text-xs text-[#60718a]">Spinal Surgery</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sticky Availability & Booking -->
+<div class="lg:col-span-4 relative">
+<div class="sticky top-24 flex flex-col gap-6">
+<!-- Availability Focus Card -->
+<div class="bg-white rounded-2xl p-6 shadow-lg border border-primary/10 overflow-hidden relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-400"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</div>
+<h3 class="font-bold text-[#111418] text-lg">Available Today</h3>
+</div>
+<div class="flex flex-col gap-3 mb-6">
+<p class="text-sm text-[#60718a]">Next available slot for consultation:</p>
+<div class="p-3 bg-primary-soft rounded-lg border border-primary/20 flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined">schedule</span>
+<span>14:00 PM</span>
+</div>
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">Instant</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-1">
+<button class="py-2 text-sm font-medium text-[#111418] bg-slate-50 border border-slate-200 rounded-lg hover:border-primary hover:text-primary transition-colors">15:30</button>
+<button class="py-2 text-sm font-medium text-[#111418] bg-slate-50 border border-slate-200 rounded-lg hover:border-primary hover:text-primary transition-colors">16:15</button>
+<button class="py-2 text-sm font-medium text-slate-400 bg-slate-50 border border-slate-100 rounded-lg cursor-not-allowed">17:00</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full h-12 bg-primary hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-sm tracking-wide">
+<span>Book Consultation</span>
+<span class="bg-white/20 px-2 py-0.5 rounded text-xs">$500</span>
+</button>
+<button class="w-full h-12 bg-white border border-slate-200 hover:bg-slate-50 text-[#111418] font-bold rounded-xl transition-all flex items-center justify-center gap-2 text-sm">
+<span class="material-symbols-outlined text-lg">mail</span>
+<span>Message Office</span>
+</button>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-[#60718a]">
+<span class="material-symbols-outlined text-sm text-green-500">verified_user</span>
+<span>Verified by MyMedic Concierge</span>
+</div>
+</div>
+<!-- Map / Location Preview -->
+<div class="bg-white rounded-2xl p-1 shadow-sm border border-slate-100 group cursor-pointer">
+<div class="relative w-full h-40 rounded-xl overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Map showing clinic location in downtown area" data-location="New York, NY" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAINUX-No2jzt9fmYnB4z0qnuymN7LiOAbSXLykayZW6bjrlOL3Kl2kgv2SPgZPQHiwMIkZjFeOAKfpkyN29lhfzZOWxjiOo2S8U06I3-Ka-xZsLBvuo583Emm3XfMQNa0pbQl49RJQ-CW-fXzgkQAzcpKQFyIc3NvKzREPuUf4dSimZklqSUTHAPx1ePdtUVs0tyMAuO6bzJS66rUZEuftTljQ2LfzFNohk9tR4eOE8tZ0wabvzoYjcZlJH4TQMmJralU-n16SPzs");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 text-white">
+<p class="font-bold text-sm">Johns Hopkins Hospital</p>
+<p class="text-xs opacity-90">1800 Orleans St, Baltimore</p>
+</div>
+</div>
+</div>
+<!-- Quick Contact Sticky Fab (Visible on Mobile Only, but structure kept for consistency) -->
+<div class="lg:hidden fixed bottom-6 right-6 z-50">
+<button class="h-14 w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl">call</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

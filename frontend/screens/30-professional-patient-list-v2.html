@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MyMedic - Professional Patient List</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d69f2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101722",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    boxShadow: {
+                        'luxury': '0 20px 40px -10px rgba(13, 105, 242, 0.08), 0 10px 20px -10px rgba(0, 0, 0, 0.04)',
+                        'luxury-hover': '0 25px 50px -12px rgba(13, 105, 242, 0.15), 0 10px 20px -10px rgba(0, 0, 0, 0.04)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .filled-icon {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
+<div class="px-6 md:px-10 py-4 flex items-center justify-between max-w-[1440px] mx-auto w-full">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl filled-icon">medical_services</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">MyMedic</h2>
+</div>
+<div class="flex items-center gap-4 md:gap-6">
+<div class="hidden md:flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
+<button class="flex items-center gap-3 pl-1 pr-2 py-1 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700">
+<div class="size-9 rounded-full bg-slate-200 overflow-hidden relative">
+<img alt="Doctor Profile Avatar" class="object-cover w-full h-full" data-alt="Professional doctor portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfxiG3qYDeV67vjnI7xX75kUsD4ke_drMBYluiiMiSxI4G9hyP0h51eghGKPwmiOi_7jy3fw5a4ZIwIza_TwRC8XRp9TR8Qe0L4voBsAKcSs5ZLTIWhuG4sepe0DpdDiDR-vqFsl7Jx1RaojCUC5BDWYFIzpem5G38Ky1Ge87FOwDiV3W-5PCEJfm7mx-v8kJz0NRKOuPPCHYDk1K3os0yvgmN3-gbtXb_kpM-LNMvXjHBMLkrDtRdSEZN4TgwPAio3wfsBuAc-6U"/>
+</div>
+<div class="hidden lg:block text-left">
+<p class="text-sm font-bold text-slate-900 dark:text-white leading-none">Dr. Strange</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Chief Surgeon</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 hidden lg:block text-lg">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-10 py-8">
+<!-- Header Section -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white">Patient Roster</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Manage your high-net-worth private patients effectively.</p>
+</div>
+<div class="flex gap-3">
+<button class="group flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white font-bold text-sm shadow-sm hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-[20px] text-slate-500 group-hover:text-primary transition-colors">download</span>
+<span>Export</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-blue-600 hover:shadow-primary/30 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add New Patient</span>
+</button>
+</div>
+</div>
+<!-- Search & Filters -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl p-2 shadow-sm border border-slate-100 dark:border-slate-700 mb-8 flex flex-col md:flex-row gap-2">
+<!-- Search Input -->
+<div class="relative flex-1 group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full h-14 pl-12 pr-4 bg-slate-50 dark:bg-slate-900/50 border-transparent rounded-xl text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-0 transition-all text-base" placeholder="Search by name, ID, or condition..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg text-slate-400 transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex overflow-x-auto pb-2 md:pb-0 gap-2 items-center px-2 no-scrollbar">
+<button class="whitespace-nowrap h-10 px-4 rounded-lg bg-primary/10 text-primary font-semibold text-sm border border-primary/10">All Patients</button>
+<button class="whitespace-nowrap h-10 px-4 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-2">
+<span class="size-2 rounded-full bg-amber-400"></span>
+                    VIP
+                </button>
+<button class="whitespace-nowrap h-10 px-4 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-2">
+<span class="size-2 rounded-full bg-emerald-400"></span>
+                    Recent
+                </button>
+<button class="whitespace-nowrap h-10 px-4 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium text-sm border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-2">
+<span class="size-2 rounded-full bg-rose-400"></span>
+                    Action Required
+                </button>
+</div>
+</div>
+<!-- Patient Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1: VIP -->
+<div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-luxury hover:shadow-luxury-hover transition-all duration-300 hover:-translate-y-1">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-16 rounded-2xl overflow-hidden shadow-sm">
+<img alt="Patient Alexander Hamilton" class="w-full h-full object-cover" data-alt="Portrait of a middle aged man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWpgC_Ee_3OMuI67HzYU9khK901bQsQ9UjB7vWAnVZWeyHObsf3fhx3PzQxSmGsv0JCOAhpvoyLRds3fMfZMAJbgAmTbYUeVv_IWCaAmghajtm81kWXvTBmrixZW9Z1FHgGJ1NbegnSbKk7x_d5VaJWVfwnL1NbA8e7EKuznMyCjFDfy8Au3Ge7KQ2jDqL46qTptWF9PGeHjfuN_uUu9QGU3QziR8zcv9giGHNW7Hxl0GzhrcnGypYB0O_1z8yn1E2wk3bDQgR0SE"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-white dark:border-slate-800 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] filled-icon">star</span> VIP
+                            </div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Alexander Hamilton</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ID: #882-991 • Male, 42</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-3 mb-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Last Visit</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Oct 24, 2023</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Next Due</span>
+<span class="text-sm font-semibold text-primary">Tomorrow, 10:00 AM</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<button class="flex-1 h-10 rounded-lg bg-primary text-white font-medium text-sm flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                        Message
+                    </button>
+<button class="h-10 px-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        History
+                    </button>
+</div>
+</div>
+<!-- Card 2: Priority -->
+<div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-luxury hover:shadow-luxury-hover transition-all duration-300 hover:-translate-y-1">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-16 rounded-2xl overflow-hidden shadow-sm">
+<img alt="Patient Sarah Connors" class="w-full h-full object-cover" data-alt="Portrait of a young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIl2j3XANSuMWM2XgixZKCHBBPe42VuxnVUONJoSqsrtMaP6bb4HtLH2cQN4mBpGTBoJ1qFfps3kuDGM1WAsJCVaX4G-F1iXOwOUGW3VMp9J3VD7ib9N5cef9Bq2A5YkSH7IVvAoC6x6H2hsxTo5QIlmuW7d7LY3y9NlIrzW9zYL0ZPqNaj14DK_pDvna1Ic-T08gpXgZLtq1mGAZQEwPFnSPtLG0OyH6TLOjoyX--gXUsNyM7pYRUcieXKBlMhKGe6yFWTqJTTsI"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-white dark:border-slate-800 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] filled-icon">priority_high</span> Priority
+                            </div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Sarah Connors</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ID: #992-102 • Female, 29</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-3 mb-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Condition</span>
+<span class="text-sm font-semibold text-rose-600">Post-Op Monitor</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Last Vitals</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Stable (2h ago)</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<button class="flex-1 h-10 rounded-lg bg-primary/10 text-primary font-medium text-sm flex items-center justify-center gap-2 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                        Message
+                    </button>
+<button class="h-10 px-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        History
+                    </button>
+</div>
+</div>
+<!-- Card 3: Standard -->
+<div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-luxury hover:shadow-luxury-hover transition-all duration-300 hover:-translate-y-1">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-16 rounded-2xl overflow-hidden shadow-sm">
+<img alt="Patient James McAvoy" class="w-full h-full object-cover" data-alt="Portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFtk_PAMcFox4s9KDkY0v7GErq_2m7GUg-aQD6oy1XBAXTOAtbtqdjeQQ5EWCu0xSdPtrqHY8dQdY0xwVjaA_nws_8lZuMYNY2c8fda8Qfh0X8U6oNH1yFWXdE14g8WaLp492gaTrghZ9lMrSDVFL1xHk-xy2-e-Unm3i_zsTITAsEL5xsh7U2dYOKGTDXtHaf4b9MraD7KwhPwPH9h539ttuEN5gkUTeByXeyBrhprfbgOTWCZWYLiMK_W5qTnWGd1_ZTz4SRATI"/>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">James McAvoy</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ID: #332-119 • Male, 36</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-3 mb-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Last Visit</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Jan 12, 2024</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Status</span>
+<span class="text-sm font-semibold text-emerald-600">Discharged</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<button class="flex-1 h-10 rounded-lg bg-primary/10 text-primary font-medium text-sm flex items-center justify-center gap-2 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                        Message
+                    </button>
+<button class="h-10 px-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        History
+                    </button>
+</div>
+</div>
+<!-- Card 4: Standard -->
+<div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-luxury hover:shadow-luxury-hover transition-all duration-300 hover:-translate-y-1">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-16 rounded-2xl overflow-hidden shadow-sm">
+<img alt="Patient Emily Zhang" class="w-full h-full object-cover" data-alt="Portrait of a young asian woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl1c_Vc-f1y_38YFurGXhEwFKQBC9EP4LuutOiVV8AgCxZXqHz3EsmHEi8n902F0qVHvCmc29EvSXTnWn8i0bMcbgPqpCOfw9NOCHZKhwN3VFhOK5c11ewNHnnp4Q1DBW7isqXWdH_vt68PJUHgEYdF7DTSEtyVStIu3hcplpxO9pqyTE0pTF2va64t3WlyOoy9R2_msKwEqfgXFtLTVoXXOyYnJtlvfZZen6MlECkMr-MunBap7hzwFhNITi_bI4Jhyih3B9pyuM"/>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Emily Zhang</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ID: #442-121 • Female, 27</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-3 mb-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Last Visit</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Nov 03, 2023</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Next Due</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Feb 15, 2024</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<button class="flex-1 h-10 rounded-lg bg-primary/10 text-primary font-medium text-sm flex items-center justify-center gap-2 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                        Message
+                    </button>
+<button class="h-10 px-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        History
+                    </button>
+</div>
+</div>
+<!-- Card 5: VIP -->
+<div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-luxury hover:shadow-luxury-hover transition-all duration-300 hover:-translate-y-1">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-16 rounded-2xl overflow-hidden shadow-sm">
+<img alt="Patient Robert Fox" class="w-full h-full object-cover" data-alt="Portrait of an older man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKQxwIVKzskd5Qtt0EZiCAJHxYvCoBJQyaqyq4iXYb5f27doUEqOXnW22kcN31LcyvAOHYT6WeBLMc9UdimpqorG3HrJKwxWcP3JDlYKASROXpgsdzSgPHP3NEZYddG5ycd4kFlDZvFHlfpmhHWqs2Vgsmaxsxkb05d8_gbQ-_zv437mdzgqNfD-3sIWMjYyqp73T6BmjJYVnakHLxQWrk2KsUN4Ric7XkjsCwddtFqkwD-prpsNqWcwNnMx0c3hK888v_h1M342E"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-white dark:border-slate-800 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] filled-icon">star</span> VIP
+                            </div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Robert Fox</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ID: #993-221 • Male, 61</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-3 mb-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Last Visit</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Dec 15, 2023</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Treatment</span>
+<span class="text-sm font-semibold text-primary">Ongoing</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<button class="flex-1 h-10 rounded-lg bg-primary/10 text-primary font-medium text-sm flex items-center justify-center gap-2 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                        Message
+                    </button>
+<button class="h-10 px-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        History
+                    </button>
+</div>
+</div>
+<!-- Card 6: Priority -->
+<div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-100 dark:border-slate-700 shadow-luxury hover:shadow-luxury-hover transition-all duration-300 hover:-translate-y-1">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-16 rounded-2xl overflow-hidden shadow-sm">
+<img alt="Patient Maria Gonzalez" class="w-full h-full object-cover" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq4N4ePgx_MQ9H0WcvOVAwT9PSzVp0vgjewrO2cDfT9_ZDA_CDUyyOfk7x4iKvcDtb2liBDcQAa2UG_LKCiueFFarmZHwhhgwckRtBv8uvxYeTar8yodSPJ_7nyFkPqwDXQex0KpCRJoBY6EOZpn2y1RlfJWJ047R9WIGmY1l1f-2PjH_P6gZs3ojiaTa9EO5_9gVwrRkcw1H1T6vnuTdAWYgM2tDlvpg3LElVqVVD8o8Zub_jtVCKcJG04CNqW4vRNPA8OqCIWK8"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-white dark:border-slate-800 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] filled-icon">priority_high</span> Priority
+                            </div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight group-hover:text-primary transition-colors">Maria Gonzalez</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">ID: #102-334 • Female, 45</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-3 mb-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Condition</span>
+<span class="text-sm font-semibold text-rose-600">Observation</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">Lab Results</span>
+<span class="text-sm font-semibold text-primary">Pending</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<button class="flex-1 h-10 rounded-lg bg-primary/10 text-primary font-medium text-sm flex items-center justify-center gap-2 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                        Message
+                    </button>
+<button class="h-10 px-4 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-medium text-sm flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        History
+                    </button>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-12 flex justify-center">
+<button class="flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+<span>Load More Patients</span>
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: mymedic_db
+    restart: always
+    environment:
+      - POSTGRES_USER=mymedic
+      - POSTGRES_PASSWORD=mymedic_secure_pass
+      - POSTGRES_DB=mymedic_core
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: mymedic_pgadmin
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mymedic.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+  backend:
+    build: .
+    container_name: mymedic_backend
+    # Overwrite the command to enable reload for development
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_SERVER=db
+      - POSTGRES_USER=mymedic
+      - POSTGRES_PASSWORD=mymedic_secure_pass
+      - POSTGRES_DB=mymedic_core
+      # Construct database URL for SQLModel/AsyncPG
+      - SQLALCHEMY_DATABASE_URI=postgresql+asyncpg://mymedic:mymedic_secure_pass@db:5432/mymedic_core
+      - SECRET_KEY=changethis-to-a-secure-secret-key-generated-with-openssl
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

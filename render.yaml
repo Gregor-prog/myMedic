@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: mymedic-api
+    env: docker
+    region: ohio
+    plan: free
+    branch: main
+    rootDir: backend
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: BACKEND_CORS_ORIGINS
+        value: https://frontend-blond-iota-47.vercel.app,http://localhost:3000

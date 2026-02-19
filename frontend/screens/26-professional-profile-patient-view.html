@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Professional Profile - MyMedic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0052cc",
+                        "primary-light": "#e6effc", // derived from primary
+                        "background-light": "#f8fafc", // slightly cooler white for clinical feel
+                        "background-dark": "#0f1723",
+                        "emerald": "#10b981", // for verified badge
+                        "gold": "#f59e0b", // for top rated
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light text-slate-900 font-display antialiased selection:bg-primary/20 selection:text-primary pb-24">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+<div class="max-w-[1120px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3 text-slate-900">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">local_hospital</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">MyMedic</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">Find Doctors</a>
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">Membership</a>
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">My Health</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center rounded-lg h-9 px-4 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition-colors">
+                    Login
+                </button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden cursor-pointer" data-alt="User avatar placeholder">
+<img alt="User Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTGx_p_SHAsAB3zyj11Ib7mMeItJ-uF5EAH07HwmnvPB39gqWdoLVpIYg79FEvKHhPuyqUcwKL9Ih4b9PABQsTz6YXmxjFRTceLEVPDQzuLtvzV3MU0H3tIZIU-Ccnf204FamUcnpnaN8c71PindT6Cyltvdn9V6-dZrXQSrjAOfNWu1h-g2HDkVAXQLa4yjNPg1VS-8lW8ZU3tTLuf-01i6SnpwI8FUy1nDBKH1d8jaLPeMhtX0623kZDFmVKtz1dYU1_WwsVrGc"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1120px] mx-auto px-6 pt-8 md:pt-12">
+<!-- Hero Section: Doctor Profile Header -->
+<div class="relative flex flex-col md:flex-row gap-8 items-start md:items-end mb-12">
+<!-- Portrait Container -->
+<div class="relative shrink-0 mx-auto md:mx-0 group">
+<div class="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-xl ring-4 ring-white relative z-10" data-alt="High resolution professional portrait of Dr. Sarah Jenkins">
+<img alt="Dr. Sarah Jenkins" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_dlBbFa8Nps0Ncr0Qr0ZVZ5zvbb7suWokp568aLq1HZ_zjBNRyjaVvDxK9GJSWqK19NhwbEJr-NWdlt0NsG9CjccwoCe_umMJ9TqrdnRdUGVmrhYbx7Nf6oaqZcneGda_9D4gDVu8EpQ0tt8-QnqlogYVc9rgYBsqinKo-zro1shBmEYb7L2pRhvG8ueyS-p6-78OIAcGIE7nMloyvkUcK3we4m_dfrKGGSetLE36V1HYsgbdVVNYrOiyFv_AIbzkWENQrmgboVY"/>
+</div>
+<!-- Floating Badges -->
+<div class="absolute -top-3 -right-3 z-20 flex flex-col gap-2">
+<div class="bg-white p-1.5 rounded-full shadow-lg border border-emerald/10 text-emerald flex items-center justify-center tooltip" title="Verified Professional">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+</div>
+</div>
+<!-- Profile Info -->
+<div class="flex-1 w-full md:w-auto text-center md:text-left md:pb-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold tracking-wide uppercase mb-3">
+<span class="material-symbols-outlined text-[16px] text-gold">workspace_premium</span>
+                    Top Rated Specialist
+                </div>
+<h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-2">Dr. Sarah Jenkins</h1>
+<p class="text-xl text-slate-500 font-medium mb-4">Consultant Cardiologist</p>
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-y-3 gap-x-6 text-sm text-slate-600">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-400">location_on</span>
+<span>Harley Street, London</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-400">language</span>
+<span>English, French</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-400">schedule</span>
+<span class="text-emerald font-semibold">Available Today</span>
+</div>
+</div>
+</div>
+<!-- Quick Stats Card -->
+<div class="bg-white rounded-xl shadow-sm border border-slate-100 p-5 min-w-[240px] hidden lg:block">
+<div class="flex items-center justify-between mb-4 border-b border-slate-50 pb-4">
+<div>
+<div class="flex items-center gap-1 text-gold mb-1">
+<span class="material-symbols-outlined text-xl fill-1">star</span>
+<span class="text-2xl font-bold text-slate-900">5.0</span>
+</div>
+<p class="text-xs text-slate-500 font-medium">124 Patient Reviews</p>
+</div>
+<div class="h-10 w-10 bg-primary/5 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">reviews</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-2xl font-bold text-slate-900">15+</p>
+<p class="text-xs text-slate-500 font-medium">Years Exp.</p>
+</div>
+<div class="h-8 w-px bg-slate-100"></div>
+<div>
+<p class="text-2xl font-bold text-slate-900">2k+</p>
+<p class="text-xs text-slate-500 font-medium">Patients</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+<!-- Left Column: Content -->
+<div class="lg:col-span-2 flex flex-col gap-12">
+<!-- About Section -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-1 bg-primary rounded-full"></div>
+<h3 class="text-2xl font-bold text-slate-900">About</h3>
+</div>
+<div class="prose prose-slate prose-lg text-slate-600 leading-relaxed">
+<p class="mb-4">
+                            Dr. Sarah Jenkins is a renowned Consultant Cardiologist with over 15 years of experience in diagnosing and treating complex heart conditions. She specializes in preventative cardiology, heart failure management, and advanced cardiac imaging.
+                        </p>
+<p>
+                            Known for her compassionate, patient-centric approach, Dr. Jenkins believes in empowering her patients through education and personalized care plans. She combines cutting-edge medical technology with a holistic view of health to ensure the best possible outcomes for her patients.
+                        </p>
+</div>
+</section>
+<!-- Experience Section -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-1 bg-primary rounded-full"></div>
+<h3 class="text-2xl font-bold text-slate-900">Experience</h3>
+</div>
+<div class="relative border-l border-slate-200 ml-3 space-y-10 py-2">
+<!-- Item 1 -->
+<div class="relative pl-8">
+<div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white bg-primary ring-4 ring-primary/10"></div>
+<span class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-1 block">2018 - Present</span>
+<h4 class="text-lg font-bold text-slate-900">Senior Consultant Cardiologist</h4>
+<p class="text-slate-500 font-medium">The London Heart Center</p>
+<p class="mt-2 text-slate-600 text-sm leading-relaxed">Leading the advanced heart failure unit and mentoring junior fellows.</p>
+</div>
+<!-- Item 2 -->
+<div class="relative pl-8">
+<div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white bg-slate-300"></div>
+<span class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-1 block">2012 - 2018</span>
+<h4 class="text-lg font-bold text-slate-900">Attending Physician</h4>
+<p class="text-slate-500 font-medium">Royal Brompton Hospital</p>
+<p class="mt-2 text-slate-600 text-sm leading-relaxed">Specialized in interventional cardiology and emergency cardiac care.</p>
+</div>
+<!-- Item 3 -->
+<div class="relative pl-8">
+<div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full border-2 border-white bg-slate-300"></div>
+<span class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-1 block">2008 - 2012</span>
+<h4 class="text-lg font-bold text-slate-900">Cardiology Fellowship</h4>
+<p class="text-slate-500 font-medium">Mayo Clinic, USA</p>
+</div>
+</div>
+</section>
+<!-- Credentials & Awards -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-1 bg-primary rounded-full"></div>
+<h3 class="text-2xl font-bold text-slate-900">Credentials</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="h-10 w-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h5 class="font-bold text-slate-900 text-sm">Doctor of Medicine (MD)</h5>
+<p class="text-xs text-slate-500 mt-1">Imperial College London, 2008</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="h-10 w-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div>
+<h5 class="font-bold text-slate-900 text-sm">Board Certified</h5>
+<p class="text-xs text-slate-500 mt-1">European Board of Cardiology</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="h-10 w-10 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">award_star</span>
+</div>
+<div>
+<h5 class="font-bold text-slate-900 text-sm">Fellowship Award</h5>
+<p class="text-xs text-slate-500 mt-1">American College of Cardiology</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+<div class="h-10 w-10 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">local_library</span>
+</div>
+<div>
+<h5 class="font-bold text-slate-900 text-sm">Published Author</h5>
+<p class="text-xs text-slate-500 mt-1">20+ Papers in Cardiac Journals</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Patient Reviews Preview -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="h-8 w-1 bg-primary rounded-full"></div>
+<h3 class="text-2xl font-bold text-slate-900">Patient Reviews</h3>
+</div>
+<a class="text-sm font-bold text-primary hover:text-blue-700" href="#">View all 124</a>
+</div>
+<div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-100 shadow-sm">
+<div class="flex gap-1 text-gold mb-3">
+<span class="material-symbols-outlined fill-1 text-sm">star</span>
+<span class="material-symbols-outlined fill-1 text-sm">star</span>
+<span class="material-symbols-outlined fill-1 text-sm">star</span>
+<span class="material-symbols-outlined fill-1 text-sm">star</span>
+<span class="material-symbols-outlined fill-1 text-sm">star</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 mb-2">"Exceptional care and attention"</h4>
+<p class="text-slate-600 leading-relaxed mb-4">"Dr. Jenkins made me feel completely at ease during my consultation. Her explanation of my condition was clear, and I felt genuinely cared for. The clinic facilities are also top-notch."</p>
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 text-xs font-bold">JD</div>
+<div>
+<p class="text-sm font-bold text-slate-900">James D.</p>
+<p class="text-xs text-slate-400">Verified Patient • 2 weeks ago</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Sidebar (Desktop) / Info -->
+<div class="hidden lg:block lg:col-span-1">
+<div class="sticky top-24 flex flex-col gap-6">
+<!-- Clinic Info Card -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+<h4 class="font-bold text-slate-900 mb-4">Clinic Location</h4>
+<div class="aspect-video w-full rounded-lg bg-slate-100 mb-4 overflow-hidden relative group cursor-pointer" data-location="Harley Street, London" style="">
+<div class="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/20 transition-colors z-10"></div>
+<img alt="Map view of Harley Street Clinic location" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMRnZF4he9ahy_p_-xPPbBwiZ9smaxzy7PlYz9tw-Y4ZRZxSOLRDtc0ND_Dfg2z5adwnxFtTfG_S0rmF-jdWPUwqyAsoZXIwjWTPxqE6EXmfbEg0fabMXt6owGoVUF3HSR-BgdN0-_EOj0pDfLmrSVabtT3X6EktCKh-xgUS9epqo-dJ3EUiFrUHdXEYBfzLXaH-Oaz1L6uvuoR7oWgiNCrrjc2NYwgM3BYtOmu_pkUXV4W4BK0o2w3i0ThvDlI_N7X7ZY5lx3Td8"/>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-slate-400 mt-0.5 text-xl">domain</span>
+<div>
+<p class="text-sm font-bold text-slate-900">Harley Street Clinic</p>
+<p class="text-xs text-slate-500">14 Harley St, London W1G 9PQ</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 text-xl">call</span>
+<p class="text-sm font-bold text-slate-900">+44 20 7123 4567</p>
+</div>
+</div>
+</div>
+<!-- Services Tags -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+<h4 class="font-bold text-slate-900 mb-4">Specialties</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-slate-50 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-100">Cardiology</span>
+<span class="bg-slate-50 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-100">Heart Failure</span>
+<span class="bg-slate-50 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-100">Echocardiogram</span>
+<span class="bg-slate-50 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-100">Preventative Care</span>
+<span class="bg-slate-50 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-100">Hypertension</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40">
+<div class="max-w-[1120px] mx-auto flex items-center justify-between gap-4">
+<div class="hidden md:flex flex-col">
+<span class="text-xs text-slate-500 uppercase font-bold tracking-wider">Consultation Fee</span>
+<span class="text-lg font-bold text-slate-900">£250 <span class="text-sm font-normal text-slate-500">/ Session</span></span>
+</div>
+<div class="flex flex-1 md:flex-none gap-3 justify-end">
+<button class="flex-1 md:flex-none h-12 px-6 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-sm hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">mail</span>
+<span class="whitespace-nowrap">Send Message</span>
+</button>
+<button class="flex-[2] md:flex-none h-12 px-8 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/30 hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+<span class="whitespace-nowrap">Book Consultation</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

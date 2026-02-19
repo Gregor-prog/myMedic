@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Professional Prescription Management</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0052cc",
+              "primary-light": "#E6F0FF",
+              "background-light": "#f5f7f8",
+              "background-dark": "#0f1723",
+              "success": "#10B981",
+              "warning": "#F59E0B",
+              "danger": "#EF4444",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            boxShadow: {
+              'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+              'glow': '0 0 15px rgba(0, 82, 204, 0.15)'
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Main Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 bg-white/90 backdrop-blur-md px-10 py-4 shadow-sm dark:border-slate-800 dark:bg-background-dark/90">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined !text-3xl icon-filled">medical_services</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">MyMedic</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white text-sm font-semibold leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary dark:text-white text-sm font-bold leading-normal transition-colors" href="#">Patients</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white text-sm font-semibold leading-normal transition-colors" href="#">Schedule</a>
+<a class="text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white text-sm font-semibold leading-normal transition-colors" href="#">Messages</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative rounded-full p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-slate-100 dark:ring-slate-700 cursor-pointer" data-alt="Portrait of a male doctor in white coat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuASinoxxa1mlMvGMqD6wKpR_ue7gaslIk7NLoH081YAxDAmECXTuLJIerlVanC1_AaBLNWgdSkZAM2_FPDw12pFJ8_oGh2r4mnCrb9XLB_X6RS2CuZEB6_c86127zfuOgN2srYLAPUlOV0NKwhR93ZK3zBvZr5eqcPzMAPKIiX5bg_Gxj6LVYfhffY_N_LQ1zaREbonaKljSow5yt2E6EOCshnsXIyKIUcI8p3R0Pr4nGEk39BykAcjXuRPqAkyF5g6vx041ZHSWr4");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-8 px-6 lg:px-12">
+<div class="flex flex-col max-w-[1200px] flex-1 gap-8">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col gap-2">
+<div class="flex flex-wrap gap-2 items-center text-sm">
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">Patients</a>
+<span class="material-symbols-outlined text-slate-400 !text-sm">chevron_right</span>
+<a class="text-slate-500 hover:text-primary transition-colors font-medium" href="#">Alexander V.</a>
+<span class="material-symbols-outlined text-slate-400 !text-sm">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-semibold">Prescriptions</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-4 mt-2">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-white text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight">Prescription Management</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal">Manage active medications and renewals for Alexander V.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-glow transition-all transform active:scale-95">
+<span class="material-symbols-outlined !text-xl">add_circle</span>
+<span>New Prescription</span>
+</button>
+</div>
+</div>
+<!-- Patient Summary Card -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-soft border border-slate-100 dark:border-slate-700 flex flex-col md:flex-row items-start md:items-center gap-6">
+<div class="relative">
+<div class="size-20 rounded-full bg-cover bg-center border-4 border-slate-50 dark:border-slate-700 shadow-sm" data-alt="Portrait of elderly male patient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByCUkqAvZzmd86AmWuzJkiqQn9rGbSa_lKA_Q0IEuWE-A-B4DDx6MvVE-azGcmvJ-Aa1cVflIxHfVVZWAqranb3vsYWTaFyrk5ThXtpCD2LwlBrRDqH4kEUpJtb6RW42iPS5px6nQSVhguO3w5Y7IzHZmZ6MCsaNery6cnnOb5Pn4QViQzjtDz6NHV1ArsVlyxrJahl0gj7lTZ9x5lDCNnteNnXLU29ZcWioDqeuC9-0tfLRGQTRcDCTr_prLSFtKOjcfKXR4jkDo");'></div>
+<div class="absolute bottom-0 right-0 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full size-5"></div>
+</div>
+<div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+<div class="flex flex-col gap-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Alexander V.</h3>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm">
+<span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-xs font-semibold">ID: #9928</span>
+<span>•</span>
+<span>68 Years Old</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 border-l-0 md:border-l border-slate-100 dark:border-slate-700 md:pl-6">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Primary Condition</span>
+<span class="text-slate-900 dark:text-white font-medium">Hypertension, Type 2 Diabetes</span>
+</div>
+<div class="flex flex-col gap-1 border-l-0 md:border-l border-slate-100 dark:border-slate-700 md:pl-6">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Critical Alerts</span>
+<div class="flex items-center gap-2 text-danger bg-red-50 dark:bg-red-900/20 px-3 py-1.5 rounded-lg w-fit">
+<span class="material-symbols-outlined !text-sm icon-filled">warning</span>
+<span class="font-bold text-sm">Allergy: Penicillin</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Search and Filters -->
+<div class="flex flex-col md:flex-row gap-4 items-center justify-between bg-slate-50 dark:bg-slate-800/50 p-2 rounded-2xl">
+<div class="relative w-full md:w-96 group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border-none rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm text-sm transition-shadow" placeholder="Search medications, dosage..." type="text"/>
+</div>
+<div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 px-2 md:px-0">
+<button class="whitespace-nowrap px-4 py-2 rounded-lg bg-white dark:bg-slate-700 shadow-sm border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm font-semibold hover:border-primary hover:text-primary transition-all">All Prescriptions</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-lg bg-primary/10 border border-primary/20 text-primary text-sm font-bold shadow-sm">Active (3)</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-lg bg-transparent text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 dark:text-slate-400 text-sm font-medium transition-colors">Expired (1)</button>
+</div>
+</div>
+<!-- Prescription Cards Grid -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Active Card 1 -->
+<div class="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-soft hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+<div class="flex items-start gap-5">
+<div class="hidden sm:flex items-center justify-center size-14 rounded-full bg-primary-light text-primary">
+<span class="material-symbols-outlined !text-3xl">pill</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<h4 class="text-xl font-bold text-slate-900 dark:text-white">Lipitor (Atorvastatin)</h4>
+<span class="bg-success/10 text-success border border-success/20 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-success animate-pulse"></span> Active
+                                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Prescribed by Dr. S. Strange on Oct 12, 2023</p>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-400 !text-sm">vaccines</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">20mg</span>
+</div>
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-400 !text-sm">schedule</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Once Daily</span>
+</div>
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-400 !text-sm">calendar_month</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">90 Days</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto mt-2 md:mt-0 pl-0 sm:pl-[76px] md:pl-0">
+<button class="flex-1 md:flex-none items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-slate-600 hover:text-primary hover:bg-primary-light font-semibold text-sm transition-colors">
+<span class="material-symbols-outlined !text-lg">edit</span>
+                                    Modify
+                                </button>
+<button class="flex-1 md:flex-none items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 text-white font-semibold text-sm transition-all shadow-md">
+<span class="material-symbols-outlined !text-lg">autorenew</span>
+                                    Renew
+                                </button>
+</div>
+</div>
+<!-- Active Card 2 -->
+<div class="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-soft hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+<div class="flex items-start gap-5">
+<div class="hidden sm:flex items-center justify-center size-14 rounded-full bg-primary-light text-primary">
+<span class="material-symbols-outlined !text-3xl">pill</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<h4 class="text-xl font-bold text-slate-900 dark:text-white">Metformin</h4>
+<span class="bg-success/10 text-success border border-success/20 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-success animate-pulse"></span> Active
+                                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Prescribed by Dr. S. Strange on Nov 05, 2023</p>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-400 !text-sm">vaccines</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">500mg</span>
+</div>
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-400 !text-sm">schedule</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Twice Daily</span>
+</div>
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700/50 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-400 !text-sm">calendar_month</span>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">30 Days</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto mt-2 md:mt-0 pl-0 sm:pl-[76px] md:pl-0">
+<button class="flex-1 md:flex-none items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-slate-600 hover:text-primary hover:bg-primary-light font-semibold text-sm transition-colors">
+<span class="material-symbols-outlined !text-lg">edit</span>
+                                    Modify
+                                </button>
+<button class="flex-1 md:flex-none items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 text-white font-semibold text-sm transition-all shadow-md">
+<span class="material-symbols-outlined !text-lg">autorenew</span>
+                                    Renew
+                                </button>
+</div>
+</div>
+<!-- Expired Card -->
+<div class="group relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-slate-50 dark:bg-slate-800/40 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 transition-all duration-300 opacity-80 hover:opacity-100">
+<div class="flex items-start gap-5">
+<div class="hidden sm:flex items-center justify-center size-14 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500">
+<span class="material-symbols-outlined !text-3xl">medication</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<h4 class="text-xl font-bold text-slate-600 dark:text-slate-300">Amoxicillin</h4>
+<span class="bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-600 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                                            Expired
+                                        </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Ended on Sept 15, 2023</p>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-2 px-2 py-1">
+<span class="text-sm font-medium text-slate-500">500mg</span>
+</div>
+<span class="text-slate-300">|</span>
+<div class="flex items-center gap-2 px-2 py-1">
+<span class="text-sm font-medium text-slate-500">Every 8 Hours</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto mt-2 md:mt-0 pl-0 sm:pl-[76px] md:pl-0">
+<button class="flex-1 md:flex-none items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-slate-400 hover:text-slate-600 font-semibold text-sm transition-colors">
+                                    Details
+                                </button>
+<button class="flex-1 md:flex-none items-center justify-center gap-2 px-5 py-2.5 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white font-semibold text-sm transition-all">
+                                    Re-Prescribe
+                                </button>
+</div>
+</div>
+</div>
+<!-- Digital Signature Verification Footer -->
+<div class="mt-4 flex justify-end">
+<div class="inline-flex items-center gap-3 bg-white dark:bg-slate-800 border border-success/30 px-4 py-2 rounded-lg shadow-sm">
+<div class="flex items-center justify-center size-8 rounded-full bg-success/10 text-success">
+<span class="material-symbols-outlined !text-lg icon-filled">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider font-bold text-slate-400">Digital Signature</span>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-200">Verified by Dr. S. Strange • <span class="text-success">Secure</span></span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

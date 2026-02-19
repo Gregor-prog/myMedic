@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Professional Registration - Step 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8114b8", // Deep Purple Brand Color
+                        "primary-hover": "#6a1096",
+                        "primary-light": "#f2e7f7", 
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#1c1121",
+                        "medical-blue": "#0052CC", // For specific medical trust accents
+                        "soft-blue": "#E6F0FF", // For info cards
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(129, 20, 184, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased min-h-screen flex flex-col selection:bg-primary/30">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-6 lg:px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-2xl">medical_services</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">MyMedic</h2>
+</div>
+<button class="hidden sm:flex group cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-200 text-sm font-semibold leading-normal">
+<span class="material-symbols-outlined mr-2 text-lg group-hover:text-primary transition-colors">support_agent</span>
+<span class="truncate">Need Help?</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center py-10 px-4 sm:px-6">
+<!-- Registration Card Container -->
+<div class="w-full max-w-[640px] bg-white dark:bg-[#241a29] rounded-2xl shadow-soft border border-slate-100 dark:border-slate-800 overflow-hidden relative">
+<!-- Progress Bar Section -->
+<div class="px-8 pt-8 pb-4">
+<div class="flex items-center justify-between mb-3">
+<p class="text-slate-900 dark:text-white text-sm font-semibold tracking-wide uppercase">Step 1 of 3</p>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">33% Completed</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 33%"></div>
+</div>
+</div>
+<!-- Content Body -->
+<div class="px-8 pb-8 sm:px-10 sm:pb-10 pt-2">
+<!-- Header Text -->
+<div class="mb-8">
+<h1 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">Professional Credentials</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
+                        Please provide your current licensure details to join our elite network of verified healthcare providers.
+                    </p>
+</div>
+<!-- Info Card: Verified Professional -->
+<div class="flex items-start gap-4 p-4 mb-8 rounded-xl bg-soft-blue/50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/50">
+<div class="flex-shrink-0 mt-0.5 text-medical-blue dark:text-blue-400">
+<span class="material-symbols-outlined !text-2xl filled">verified_user</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-blue-100 mb-1">Secure Verification</h4>
+<p class="text-sm text-slate-600 dark:text-blue-200/80 leading-snug">
+                            Your credentials will be instantly cross-referenced with the national medical board database. Your data is encrypted and HIPAA compliant.
+                        </p>
+</div>
+</div>
+<!-- Form Fields -->
+<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<!-- License Number -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="license">
+                            Medical License Number
+                        </label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">badge</span>
+</div>
+<input class="block w-full rounded-xl border-slate-200 dark:border-slate-700 pl-10 pr-12 py-3.5 text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-800/50 placeholder:text-slate-400 focus:border-primary focus:ring-primary focus:ring-1 sm:text-base shadow-sm transition-all" id="license" name="license" placeholder="e.g., MD-12345678" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="text-xs font-mono text-slate-400 border border-slate-200 dark:border-slate-700 rounded px-1.5 py-0.5 bg-white dark:bg-slate-800">REQ</span>
+</div>
+</div>
+</div>
+<!-- Specialty & Experience Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Primary Specialty -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="specialty">
+                                Primary Specialty
+                            </label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">stethoscope</span>
+</div>
+<select class="block w-full rounded-xl border-slate-200 dark:border-slate-700 pl-10 pr-10 py-3.5 text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-800/50 focus:border-primary focus:ring-primary focus:ring-1 sm:text-base shadow-sm transition-all appearance-none cursor-pointer" id="specialty" name="specialty">
+<option disabled="" selected="" value="">Select specialty</option>
+<option value="cardiology">Cardiology</option>
+<option value="dermatology">Dermatology</option>
+<option value="neurology">Neurology</option>
+<option value="pediatrics">Pediatrics</option>
+<option value="psychiatry">Psychiatry</option>
+<option value="surgery">General Surgery</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Years of Experience -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-200" for="experience">
+                                Years of Experience
+                            </label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">history</span>
+</div>
+<input class="block w-full rounded-xl border-slate-200 dark:border-slate-700 pl-10 pr-4 py-3.5 text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-800/50 placeholder:text-slate-400 focus:border-primary focus:ring-primary focus:ring-1 sm:text-base shadow-sm transition-all" id="experience" max="70" min="0" name="experience" placeholder="0" type="number"/>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-4">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-base font-bold py-4 px-6 rounded-xl shadow-lg shadow-primary/25 transform transition hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-slate-900" type="submit">
+<span>Verify &amp; Continue</span>
+<span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+<div class="text-center mt-2">
+<p class="text-xs text-slate-400 dark:text-slate-500">
+                            By clicking continue, you agree to our <a class="text-primary hover:text-primary-hover underline underline-offset-2" href="#">Terms of Service</a>.
+                        </p>
+</div>
+</form>
+</div>
+<!-- Bottom decorative gradient line -->
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-purple-400 to-medical-blue"></div>
+</div>
+<!-- Bottom Trust Badges (Optional but adds to "Elite" feel) -->
+<div class="mt-8 flex gap-6 grayscale opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined !text-lg text-slate-400">lock</span>
+                SSL Secured
+            </div>
+<div class="flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined !text-lg text-slate-400">shield</span>
+                HIPAA Compliant
+            </div>
+</div>
+</main>
+</body></html>

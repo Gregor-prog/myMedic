@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0052cc"/>
+  <g fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Stethoscope head -->
+    <circle cx="256" cy="240" r="60"/>
+    <circle cx="256" cy="240" r="20" fill="#ffffff" stroke="none"/>
+    <!-- Tube -->
+    <path d="M 256 300 L 256 360 Q 256 400 296 400 L 320 400 Q 360 400 360 360 L 360 280"/>
+    <!-- Earpieces -->
+    <path d="M 196 240 L 160 180 L 140 140"/>
+    <path d="M 316 240 L 352 180 L 372 140"/>
+    <circle cx="140" cy="132" r="12" fill="#ffffff"/>
+    <circle cx="372" cy="132" r="12" fill="#ffffff"/>
+    <!-- Pulse indicator -->
+    <circle cx="360" cy="270" r="16" fill="#ffffff" stroke="none"/>
+  </g>
+</svg>
