@@ -41,15 +41,15 @@ class Settings(BaseSettings):
     def SQLALCHEMY_DATABASE_URI(self) -> Union[PostgresDsn, str]:
         if self.DATABASE_URL:
             # SQLAlchemy asyncpg requires 'postgresql+asyncpg://'
-            # and 'channel_binding' is not supported by asyncpg
+            # and parameters like 'channel_binding' or 'sslmode' can cause TypeErrors in asyncpg
             uri = self.DATABASE_URL
             if uri.startswith("postgresql://") and not uri.startswith("postgresql+asyncpg://"):
                 uri = uri.replace("postgresql://", "postgresql+asyncpg://", 1)
             
-            # Remove channel_binding=require as it's not supported by asyncpg
-            if "channel_binding=" in uri:
+            # Remove parameters not supported by asyncpg's connect() method
+            if any(k in uri for k in ["channel_binding=", "sslmode="]):
                 import re
-                uri = re.sub(r'([?&])channel_binding=[^&]*(&|$)', r'\1', uri)
+                uri = re.sub(r'([?&])(channel_binding|sslmode)=[^&]*(&|$)', r'\1', uri)
                 uri = uri.rstrip('?&')
             
             return uri
