@@ -7,7 +7,7 @@ import PageTransition from '../../components/ui/PageTransition';
 
 export default function Register() {
     const navigate = useNavigate();
-    const { userRole, addToast, register } = useStore();
+    const { userRole, addToast, register, loginWithOtp } = useStore();
     const [form, setForm] = useState({ fullName: '', email: '', phone: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -34,10 +34,13 @@ export default function Register() {
                 phone_number: phone,
                 role: userRole || 'patient'
             });
+            // Send the actual OTP via Supabase
+            await loginWithOtp(phone);
+
             addToast({ type: 'success', message: 'Account created! Verify your phone number.' });
             navigate('/verify-otp', { state: { phone, from: 'register' } });
         } catch (err) {
-            addToast({ type: 'error', message: 'Registration failed. Email might be in use.' });
+            addToast({ type: 'error', message: err?.message || 'Registration failed. Email might be in use.' });
         } finally {
             setLoading(false);
         }

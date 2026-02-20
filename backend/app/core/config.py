@@ -1,5 +1,5 @@
 import secrets
-from typing import List, Union
+from typing import List, Union, Optional
 from pydantic import AnyHttpUrl, PostgresDsn, computed_field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -11,6 +11,12 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "changethis-to-a-secure-secret-key-generated-with-openssl"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days
     ALGORITHM: str = "HS256"
+    
+    # SUPABASE
+    SUPABASE_URL: str = ""
+    SUPABASE_ANON_KEY: str = ""
+    SUPABASE_SERVICE_ROLE_KEY: str = ""
+    SUPABASE_JWT_SECRET: str = ""
     
     # CORS
     BACKEND_CORS_ORIGINS: Union[List[str], str] = [
@@ -26,12 +32,11 @@ class Settings(BaseSettings):
             return [i.strip() for i in v.split(",") if i.strip()]
         return v
 
-    # DATABASE
-    # Default to local docker settings if not provided in env
+    # DATABASE (Supabase Postgres)
     POSTGRES_SERVER: str = "localhost"
-    POSTGRES_USER: str = "mymedic"
-    POSTGRES_PASSWORD: str = "mymedic_secure_pass"
-    POSTGRES_DB: str = "mymedic_core"
+    POSTGRES_USER: str = "postgres"
+    POSTGRES_PASSWORD: str = ""
+    POSTGRES_DB: str = "postgres"
     POSTGRES_PORT: int = 5432
 
     DATABASE_URL: Union[str, None] = None
@@ -73,6 +78,14 @@ class Settings(BaseSettings):
                 path=self.POSTGRES_DB,
             )
         )
+
+    # GOOGLE OAUTH (configured via Supabase Auth Providers)
+    GOOGLE_CLIENT_ID: str = ""
+    GOOGLE_CLIENT_SECRET: str = ""
+
+    # EMAILS (Resend)
+    RESEND_API_KEY: str = ""
+    FROM_EMAIL: str = "onboarding@resend.dev"
 
     model_config = SettingsConfigDict(
         case_sensitive=True,

@@ -1,73 +1,97 @@
-from datetime import timedelta
 from typing import Any
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
+from uuid import UUID
+from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlmodel import select
+from jose import jwt, JWTError
 
 from app.core.db import get_db
 from app.core.config import settings
 from app.auth.models import User
-from app.auth.schemas import UserCreate, UserRead, Token
-from app.auth.security import get_password_hash, verify_password, create_access_token, get_current_user
+from app.auth.schemas import ProfileSync, UserRead
+from app.auth.security import get_current_user
 
 router = APIRouter()
 
-@router.post("/register", response_model=UserRead)
-async def register(
-    user_in: UserCreate,
-    db: AsyncSession = Depends(get_db)
+# Lightweight JWT parser that doesn't require user to exist in DB yet
+security = HTTPBearer()
+
+async def get_auth_payload(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+) -> dict:
+    """
+    Parse Supabase JWT and return the payload (sub, email).
+    Does NOT look up the user in the DB — used for profile sync.
+    """
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(
+            credentials.credentials,
+            settings.SUPABASE_JWT_SECRET,
+            algorithms=["HS256"],
+            audience="authenticated",
+        )
+        user_id = payload.get("sub")
+        email = payload.get("email")
+        if not user_id:
+            raise credentials_exception
+        return {"id": user_id, "email": email}
+    except JWTError:
+        raise credentials_exception
+
+
+@router.post("/sync-profile", response_model=UserRead)
+async def sync_profile(
+    profile_in: ProfileSync,
+    background_tasks: BackgroundTasks,
+    db: AsyncSession = Depends(get_db),
+    auth_data: dict = Depends(get_auth_payload),
 ) -> Any:
     """
-    Register a new user (Patient or Professional).
+    Create or update a user profile after Supabase Auth signup/login.
+    Called by the frontend immediately after a successful signup.
+    The user's ID and email come from the Supabase JWT.
     """
-    # Check if email exists
-    result = await db.exec(select(User).where(User.email == user_in.email))
-    existing_user = result.first()
-    if existing_user:
-        raise HTTPException(
-            status_code=400,
-            detail="The user with this email already exists in the system.",
-        )
+    auth_uid = UUID(auth_data["id"])
+    email = auth_data["email"]
     
-    # Create new user
+    # Check if profile already exists
+    result = await db.exec(select(User).where(User.id == auth_uid))
+    existing_user = result.first()
+    
+    if existing_user:
+        # Update existing profile
+        existing_user.full_name = profile_in.full_name
+        if profile_in.phone_number:
+            existing_user.phone_number = profile_in.phone_number
+        db.add(existing_user)
+        await db.commit()
+        await db.refresh(existing_user)
+        return existing_user
+    
+    # Create new profile linked to Supabase auth user
     user = User(
-        email=user_in.email,
-        full_name=user_in.full_name,
-        phone_number=user_in.phone_number,
-        role=user_in.role,
-        hashed_password=get_password_hash(user_in.password),
+        id=auth_uid,
+        email=email,
+        full_name=profile_in.full_name,
+        phone_number=profile_in.phone_number,
+        role=profile_in.role,
     )
     db.add(user)
     await db.commit()
     await db.refresh(user)
+
+    # Trigger Welcome Email (Phase 5) via Background Task
+    from app.core.emails import email_service
+    background_tasks.add_task(email_service.send_welcome_email, email, profile_in.full_name)
+
     return user
 
-@router.post("/token", response_model=Token)
-async def login_access_token(
-    form_data: OAuth2PasswordRequestForm = Depends(),
-    db: AsyncSession = Depends(get_db)
-) -> Any:
-    """
-    OAuth2 compatible token login, get an access token for future requests.
-    """
-    # Authenticate
-    result = await db.exec(select(User).where(User.email == form_data.username))
-    user = result.first()
-    
-    if not user or not verify_password(form_data.password, user.hashed_password):
-        raise HTTPException(status_code=400, detail="Incorrect email or password")
-    
-    if not user.is_active:
-        raise HTTPException(status_code=400, detail="Inactive user")
-    
-    access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    return {
-        "access_token": create_access_token(user.email, expires_delta=access_token_expires),
-        "token_type": "bearer",
-        "user_id": user.id,
-        "role": user.role
-    }
 
 @router.get("/me", response_model=UserRead)
 async def read_users_me(

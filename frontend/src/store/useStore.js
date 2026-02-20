@@ -1,6 +1,7 @@
 // ─────────────────────────────────────────────────────────────
 // MyMedic — Zustand Global Store
 // Central state management for Auth, Appointments, UI
+// Uses Supabase Auth + FastAPI backend
 // ─────────────────────────────────────────────────────────────
 import { create } from 'zustand';
 import {
@@ -12,7 +13,8 @@ import {
     medicalRecords,
     vitals as initialVitals,
 } from '../data/mockData';
-import { authService } from '../services/api';
+import { authService, chatService } from '../services/api';
+import { supabase } from '../services/supabase';
 
 const useStore = create((set, get) => ({
     // ── Auth State ──────────────────────────────────────────
@@ -23,13 +25,28 @@ const useStore = create((set, get) => ({
     login: async (email, password) => {
         try {
             const data = await authService.login(email, password);
-            localStorage.setItem('mymedic_token', data.access_token);
-            const user = await authService.getMe();
-            set({
-                isAuthenticated: true,
-                currentUser: user,
-                userRole: user.role,
-            });
+            // After Supabase Auth login, fetch the profile from our backend
+            try {
+                const profile = await authService.getMe();
+                set({
+                    isAuthenticated: true,
+                    currentUser: profile,
+                    userRole: profile.role,
+                });
+            } catch {
+                // Profile doesn't exist yet — set basic info from Supabase
+                const user = data.user;
+                set({
+                    isAuthenticated: true,
+                    currentUser: {
+                        id: user.id,
+                        email: user.email,
+                        full_name: user.user_metadata?.full_name || user.email,
+                        role: user.user_metadata?.role || 'patient',
+                    },
+                    userRole: user.user_metadata?.role || 'patient',
+                });
+            }
             return true;
         } catch (error) {
             console.error("Login failed", error);
@@ -39,8 +56,26 @@ const useStore = create((set, get) => ({
 
     register: async (userData) => {
         try {
-            await authService.register(userData);
-            // Auto login after register? Or just return true.
+            // Sign up with Supabase Auth
+            const data = await authService.register(userData.email, userData.password, {
+                full_name: userData.full_name,
+                role: userData.role || 'patient',
+                phone_number: userData.phone_number,
+            });
+
+            // Sync profile to our backend
+            if (data.user) {
+                try {
+                    await authService.syncProfile({
+                        full_name: userData.full_name,
+                        phone_number: userData.phone_number,
+                        role: userData.role || 'patient',
+                    });
+                } catch (syncError) {
+                    console.warn("Profile sync will happen on next login", syncError);
+                }
+            }
+
             return true;
         } catch (error) {
             console.error("Registration failed", error);
@@ -48,22 +83,96 @@ const useStore = create((set, get) => ({
         }
     },
 
-    checkAuth: async () => {
-        const token = localStorage.getItem('mymedic_token');
-        if (token) {
-            try {
-                const user = await authService.getMe();
-                set({ isAuthenticated: true, currentUser: user, userRole: user.role });
-            } catch (error) {
-                console.error("Token verification failed", error);
-                set({ isAuthenticated: false, currentUser: null, userRole: null });
-                localStorage.removeItem('mymedic_token');
-            }
+    loginWithGoogle: async () => {
+        try {
+            await authService.loginWithGoogle();
+            // OAuth redirects the browser, so no need to set state here
+            // State will be set in checkAuth after redirect
+        } catch (error) {
+            console.error("Google login failed", error);
+            throw error;
         }
     },
 
-    logout: () => {
-        localStorage.removeItem('mymedic_token');
+    loginWithOtp: async (phone) => {
+        try {
+            await authService.loginWithOtp(phone);
+            return true; // OTP sent
+        } catch (error) {
+            console.error("OTP send failed", error);
+            throw error;
+        }
+    },
+
+    verifyOtp: async (phone, token) => {
+        try {
+            const data = await authService.verifyOtp(phone, token);
+            if (data.user) {
+                try {
+                    const profile = await authService.getMe();
+                    set({
+                        isAuthenticated: true,
+                        currentUser: profile,
+                        userRole: profile.role,
+                    });
+                } catch {
+                    set({
+                        isAuthenticated: true,
+                        currentUser: {
+                            id: data.user.id,
+                            email: data.user.email,
+                            phone: data.user.phone,
+                            role: 'patient',
+                        },
+                        userRole: 'patient',
+                    });
+                }
+            }
+            return true;
+        } catch (error) {
+            console.error("OTP verification failed", error);
+            throw error;
+        }
+    },
+
+    checkAuth: async () => {
+        try {
+            const session = await authService.getSession();
+            if (session) {
+                try {
+                    const profile = await authService.getMe();
+                    set({
+                        isAuthenticated: true,
+                        currentUser: profile,
+                        userRole: profile.role,
+                    });
+                } catch {
+                    // User is authenticated but profile not synced yet (common during OAuth/OTP)
+                    const user = session.user;
+                    const role = user.user_metadata?.role || 'patient';
+                    set({
+                        isAuthenticated: true,
+                        currentUser: {
+                            id: user.id,
+                            email: user.email,
+                            full_name: user.user_metadata?.full_name || user.email,
+                            role: role,
+                            phone_number: user.phone || user.user_metadata?.phone_number
+                        },
+                        userRole: role,
+                    });
+                }
+            } else {
+                set({ isAuthenticated: false, currentUser: null, userRole: null });
+            }
+        } catch (error) {
+            console.error("Auth check failed", error);
+            set({ isAuthenticated: false, currentUser: null, userRole: null });
+        }
+    },
+
+    logout: async () => {
+        await authService.logout();
         set({
             isAuthenticated: false,
             currentUser: null,
@@ -117,6 +226,7 @@ const useStore = create((set, get) => ({
 
     // ── Chat ────────────────────────────────────────────────
     chatThreads,
+    activeChatSubscription: null,
 
     sendMessage: (threadId, text) => set(state => ({
         chatThreads: state.chatThreads.map(thread =>
@@ -138,6 +248,49 @@ const useStore = create((set, get) => ({
                 : thread
         ),
     })),
+
+    // Subscribe to real-time chat messages for a thread
+    subscribeToChatThread: (threadId) => {
+        // Unsubscribe from previous thread if any
+        const { activeChatSubscription } = get();
+        if (activeChatSubscription) {
+            activeChatSubscription();
+        }
+
+        const unsubscribe = chatService.subscribeToThread(threadId, (newMessage) => {
+            // Update local chat state when a new message arrives via Realtime
+            set(state => ({
+                chatThreads: state.chatThreads.map(thread =>
+                    thread.id === threadId
+                        ? {
+                            ...thread,
+                            lastMessage: newMessage.content,
+                            timestamp: newMessage.timestamp,
+                            messages: [
+                                ...thread.messages,
+                                {
+                                    id: newMessage.id,
+                                    senderId: newMessage.sender_id,
+                                    text: newMessage.content,
+                                    timestamp: newMessage.timestamp,
+                                },
+                            ],
+                        }
+                        : thread
+                ),
+            }));
+        });
+
+        set({ activeChatSubscription: unsubscribe });
+    },
+
+    unsubscribeFromChat: () => {
+        const { activeChatSubscription } = get();
+        if (activeChatSubscription) {
+            activeChatSubscription();
+            set({ activeChatSubscription: null });
+        }
+    },
 
     // ── Notifications ───────────────────────────────────────
     notifications: initialNotifications,
@@ -190,12 +343,34 @@ const useStore = create((set, get) => ({
 
     clearBookingDraft: () => set({ bookingDraft: null }),
 
-    confirmBooking: () => {
-        const { bookingDraft, addAppointment, addToast } = get();
-        if (bookingDraft) {
-            addAppointment(bookingDraft);
-            set({ bookingDraft: null });
+    confirmBooking: async () => {
+        const { bookingDraft, addToast } = get();
+        if (!bookingDraft) return;
+
+        try {
+            // Persist to backend
+            const confirmedAppointment = await bookingService.bookAppointment({
+                professional_id: bookingDraft.professional_id || bookingDraft.doctorId,
+                start_time: bookingDraft.start_time || bookingDraft.startTime,
+                end_time: bookingDraft.end_time || bookingDraft.endTime,
+                notes: bookingDraft.notes || "Standard consultation"
+            });
+
+            // Update local state with the actual data from backend
+            set(state => ({
+                appointments: [...state.appointments, confirmedAppointment],
+                bookingDraft: null
+            }));
+
             addToast({ type: 'success', message: 'Appointment booked successfully!' });
+            return confirmedAppointment;
+        } catch (error) {
+            console.error("Booking failed", error);
+            addToast({
+                type: 'error',
+                message: error.response?.data?.detail || 'Failed to confirm booking. Please try again.'
+            });
+            throw error;
         }
     },
 }));

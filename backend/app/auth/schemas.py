@@ -9,21 +9,18 @@ class UserBaseSchema(BaseModel):
     phone_number: Optional[str] = None
     role: str = "patient"
 
-# Properties to receive via API on creation
-class UserCreate(UserBaseSchema):
-    password: str
+# Properties for profile sync (after Supabase Auth signup)
+class ProfileSync(BaseModel):
+    full_name: str
+    phone_number: Optional[str] = None
+    role: str = "patient"
 
 # Properties to return via API
 class UserRead(UserBaseSchema):
     id: UUID
     is_active: bool
 
-# Token Schema
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-    user_id: UUID
-    role: str
-
+# Token data (used internally for JWT parsing)
 class TokenData(BaseModel):
+    user_id: Optional[str] = None
     email: Optional[str] = None

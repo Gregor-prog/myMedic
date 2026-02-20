@@ -8,7 +8,7 @@ import PageTransition from '../../components/ui/PageTransition';
 export default function OtpVerification() {
     const navigate = useNavigate();
     const location = useLocation();
-    const { login, userRole, addToast } = useStore();
+    const { verifyOtp, loginWithOtp, addToast } = useStore();
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [loading, setLoading] = useState(false);
     const [resendTimer, setResendTimer] = useState(30);
@@ -47,15 +47,28 @@ export default function OtpVerification() {
 
     const handleVerify = async (code) => {
         setLoading(true);
-        await new Promise(r => setTimeout(r, 1500));
-        login(userRole || 'patient', 'patient-001');
-        addToast({ type: 'success', message: 'Phone verified successfully!' });
-        navigate(userRole === 'professional' ? '/professional/dashboard' : '/patient/dashboard');
+        try {
+            await verifyOtp(phone, code);
+            addToast({ type: 'success', message: 'Phone verified successfully!' });
+            const role = useStore.getState().userRole;
+            navigate(role === 'professional' ? '/professional/dashboard' : '/patient/dashboard');
+        } catch (error) {
+            addToast({ type: 'error', message: error.message || 'Invalid verification code.' });
+            setOtp(['', '', '', '', '', '']); // Clear form on error
+            inputRefs.current[0]?.focus();
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handleResend = () => {
-        setResendTimer(30);
-        addToast({ type: 'info', message: 'New verification code sent!' });
+    const handleResend = async () => {
+        try {
+            await loginWithOtp(phone);
+            setResendTimer(30);
+            addToast({ type: 'info', message: 'New verification code sent!' });
+        } catch (error) {
+            addToast({ type: 'error', message: error.message || 'Failed to send code.' });
+        }
     };
 
     return (

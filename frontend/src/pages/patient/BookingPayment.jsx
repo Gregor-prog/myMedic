@@ -4,6 +4,7 @@ import { ArrowLeft, CreditCard, Wallet, Building2, Shield, ArrowRight, Lock } fr
 import useStore from '../../store/useStore';
 import PageTransition from '../../components/ui/PageTransition';
 import { useState } from 'react';
+import { bookingService } from '../../services/api';
 
 const paymentMethods = [
     { id: 'card', label: 'Credit / Debit Card', icon: CreditCard, sub: 'Visa, Mastercard, Verve' },
@@ -27,9 +28,40 @@ export default function BookingPayment() {
 
     const handlePay = async () => {
         setProcessing(true);
-        await new Promise(r => setTimeout(r, 2000));
-        confirmBooking();
-        navigate('/patient/booking/success');
+        try {
+            // 1. Simulate payment processing
+            await new Promise(r => setTimeout(r, 2000));
+
+            // 2. Register appointment in backend
+            const appointmentData = {
+                professional_id: bookingDraft.doctorId,
+                start_time: `${bookingDraft.date}T${bookingDraft.time}:00Z`,
+                end_time: `${bookingDraft.date}T${parseInt(bookingDraft.time.split(':')[0]) + 1}:${bookingDraft.time.split(':')[1]}:00Z`,
+                status: 'pending',
+                notes: bookingDraft.notes || ""
+            };
+
+            const confirmedApt = await bookingService.bookAppointment(appointmentData);
+
+            // 3. Confirm in local store
+            confirmBooking();
+
+            // 4. Navigate to success with data
+            navigate('/patient/booking/success', {
+                state: {
+                    booking: {
+                        ...confirmedApt,
+                        professional_name: doc?.name,
+                        patient_name: useStore.getState().currentUser?.full_name
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("Booking failed", error);
+            addToast({ type: 'error', message: 'Failed to complete booking. Please try again.' });
+        } finally {
+            setProcessing(false);
+        }
     };
 
     return (
@@ -73,8 +105,8 @@ export default function BookingPayment() {
                                         key={pm.id}
                                         onClick={() => setMethod(pm.id)}
                                         className={`w-full flex items-center gap-4 p-4 rounded-xl border transition-all text-left ${method === pm.id
-                                                ? 'border-primary bg-primary-light/50'
-                                                : 'border-gray-100 bg-white hover:border-gray-200'
+                                            ? 'border-primary bg-primary-light/50'
+                                            : 'border-gray-100 bg-white hover:border-gray-200'
                                             }`}
                                     >
                                         <div className={`p-2 rounded-lg ${method === pm.id ? 'bg-primary/10' : 'bg-gray-100'}`}>
