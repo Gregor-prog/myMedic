@@ -26,8 +26,15 @@ async def get_db():
     async with async_session_maker() as session:
         yield session
 
-# Init DB function (useful for initial table creation if not using Alembic immediately)
+# Init DB function
 async def init_db():
-    async with engine.begin() as conn:
-        # await conn.run_sync(SQLModel.metadata.drop_all) # WARNING: DELETES DATA
-        await conn.run_sync(SQLModel.metadata.create_all)
+    from urllib.parse import urlparse
+    parsed = urlparse(str(settings.SQLALCHEMY_DATABASE_URI))
+    print(f"Connecting to database at {parsed.hostname}:{parsed.port} (database: {parsed.path.lstrip('/')})")
+    try:
+        async with engine.begin() as conn:
+            await conn.run_sync(SQLModel.metadata.create_all)
+        print("Database initialized successfully.")
+    except Exception as e:
+        print(f"FAILED to initialize database: {e}")
+        raise e

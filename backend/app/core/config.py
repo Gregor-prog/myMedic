@@ -79,6 +79,13 @@ class Settings(BaseSettings):
             )
         )
 
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def validate_database_url(cls, v):
+        if not v:
+            print("WARNING: DATABASE_URL is not set. Falling back to default localhost settings.")
+        return v
+
     # GOOGLE OAUTH (configured via Supabase Auth Providers)
     GOOGLE_CLIENT_ID: str = ""
     GOOGLE_CLIENT_SECRET: str = ""
