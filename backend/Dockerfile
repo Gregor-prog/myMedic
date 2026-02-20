@@ -7,6 +7,11 @@ WORKDIR /app
 # Set env variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV VIRTUAL_ENV=/opt/venv
+
+# Create virtual environment and update PATH
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install dependencies
 COPY requirements.txt .
@@ -16,4 +21,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Command to run the application
-CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
