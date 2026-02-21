@@ -34,11 +34,11 @@ export default function Register() {
                 phone_number: phone,
                 role: userRole || 'patient'
             });
-            // Send the actual OTP via Supabase
-            await loginWithOtp(phone);
+            // Send the actual OTP via Supabase to their email
+            await loginWithOtp(email);
 
-            addToast({ type: 'success', message: 'Account created! Verify your phone number.' });
-            navigate('/verify-otp', { state: { phone, from: 'register' } });
+            addToast({ type: 'success', message: 'Account created! Verify your email address.' });
+            navigate('/verify-otp', { state: { email, from: 'register' } });
         } catch (err) {
             addToast({ type: 'error', message: err?.message || 'Registration failed. Email might be in use.' });
         } finally {

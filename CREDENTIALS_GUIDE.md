@@ -26,15 +26,28 @@ Your app uses **Supabase** for Auth, Database, and Realtime. All credentials com
 
 ---
 
-## 3. Google OAuth (Optional)
-Used for "Login with Google". Configured **in Supabase**, not directly in your app.
+## 3. Google OAuth Setup
+Used for "Login with Google". Configured **in Google Cloud Console** and then **in Supabase**.
 
-1.  Go to the [Google Cloud Console](https://console.cloud.google.com/).
-2.  Create a project and navigate to **APIs & Services > Credentials**.
-3.  Create an **OAuth client ID** (Web application).
-4.  Add redirect URI: `https://<your-supabase-ref>.supabase.co/auth/v1/callback`
-5.  Copy the **Client ID** and **Client Secret**.
-6.  In Supabase Dashboard: **Authentication > Providers > Google** → paste credentials.
+### A. Google Cloud Console Steps
+1.  Go to the [Google Cloud Console Credentials Page](https://console.cloud.google.com/apis/credentials).
+2.  **Create/Select Project**: Ensure you are in the "MyMedic" project.
+3.  **OAuth Consent Screen**: If prompted, set it up as "External", name it "MyMedic", and add your email.
+4.  **Create Credentials**: Click `+ CREATE CREDENTIALS` > `OAuth client ID`.
+5.  **Application Type**: Select `Web application`.
+6.  **Name**: Enter `MyMedic Web Client`.
+7.  **Authorized JavaScript origins**:
+    *   `http://localhost:3000`
+    *   `https://frontend-blond-iota-47.vercel.app`
+8.  **Authorized redirect URIs**:
+    *   `https://ukzsdxzovdysgwmbhdhv.supabase.co/auth/v1/callback`
+9.  Click **Create** and copy your **Client ID** and **Client Secret**.
+
+### B. Supabase Configuration
+1.  Go to [Supabase Dashboard > Authentication > Providers > Google](https://supabase.com/dashboard/project/ukzsdxzovdysgwmbhdhv/auth/providers).
+2.  Enable the provider.
+3.  Paste the **Client ID** and **Client Secret** obtained above.
+4.  Save changes.
 
 ---
 

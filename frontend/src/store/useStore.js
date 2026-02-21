@@ -94,9 +94,9 @@ const useStore = create((set, get) => ({
         }
     },
 
-    loginWithOtp: async (phone) => {
+    loginWithOtp: async (email) => {
         try {
-            await authService.loginWithOtp(phone);
+            await authService.loginWithOtp(email);
             return true; // OTP sent
         } catch (error) {
             console.error("OTP send failed", error);
@@ -104,9 +104,9 @@ const useStore = create((set, get) => ({
         }
     },
 
-    verifyOtp: async (phone, token) => {
+    verifyOtp: async (email, token) => {
         try {
-            const data = await authService.verifyOtp(phone, token);
+            const data = await authService.verifyOtp(email, token);
             if (data.user) {
                 try {
                     const profile = await authService.getMe();
@@ -121,7 +121,6 @@ const useStore = create((set, get) => ({
                         currentUser: {
                             id: data.user.id,
                             email: data.user.email,
-                            phone: data.user.phone,
                             role: 'patient',
                         },
                         userRole: 'patient',

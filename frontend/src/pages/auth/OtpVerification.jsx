@@ -13,7 +13,7 @@ export default function OtpVerification() {
     const [loading, setLoading] = useState(false);
     const [resendTimer, setResendTimer] = useState(30);
     const inputRefs = useRef([]);
-    const phone = location.state?.phone || '+234 *** **** 5678';
+    const email = location.state?.email || 'your email';
 
     useEffect(() => {
         inputRefs.current[0]?.focus();
@@ -48,8 +48,8 @@ export default function OtpVerification() {
     const handleVerify = async (code) => {
         setLoading(true);
         try {
-            await verifyOtp(phone, code);
-            addToast({ type: 'success', message: 'Phone verified successfully!' });
+            await verifyOtp(email, code);
+            addToast({ type: 'success', message: 'Email verified successfully!' });
             const role = useStore.getState().userRole;
             navigate(role === 'professional' ? '/professional/dashboard' : '/patient/dashboard');
         } catch (error) {
@@ -63,7 +63,7 @@ export default function OtpVerification() {
 
     const handleResend = async () => {
         try {
-            await loginWithOtp(phone);
+            await loginWithOtp(email);
             setResendTimer(30);
             addToast({ type: 'info', message: 'New verification code sent!' });
         } catch (error) {
@@ -85,10 +85,10 @@ export default function OtpVerification() {
                         <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6">
                             <ShieldCheck className="w-10 h-10 text-primary" />
                         </div>
-                        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 mb-2">Verify Your Number</h1>
+                        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 mb-2">Verify Your Email</h1>
                         <p className="text-slate-500 text-sm">
                             We've sent a 6-digit code to<br />
-                            <span className="font-semibold text-slate-700">{phone}</span>
+                            <span className="font-semibold text-slate-700">{email}</span>
                         </p>
                     </motion.div>
 

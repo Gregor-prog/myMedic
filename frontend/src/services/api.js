@@ -72,19 +72,19 @@ export const authService = {
         return data;
     },
 
-    loginWithOtp: async (phone) => {
+    loginWithOtp: async (email) => {
         const { data, error } = await supabase.auth.signInWithOtp({
-            phone,
+            email,
         });
         if (error) throw error;
         return data;
     },
 
-    verifyOtp: async (phone, token) => {
+    verifyOtp: async (email, token) => {
         const { data, error } = await supabase.auth.verifyOtp({
-            phone,
+            email,
             token,
-            type: 'sms',
+            type: 'email',
         });
         if (error) throw error;
         return data;

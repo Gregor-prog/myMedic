@@ -9,10 +9,10 @@ export default function Login() {
     const navigate = useNavigate();
     const { login, loginWithGoogle, userRole, addToast } = useStore();
     const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    const [otpEmail, setOtpEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [loginMode, setLoginMode] = useState('email'); // 'email' | 'phone'
+    const [loginMode, setLoginMode] = useState('email'); // 'email' | 'otp'
     const [loading, setLoading] = useState(false);
 
     const handleLogin = async (e) => {
@@ -34,17 +34,17 @@ export default function Login() {
                 setLoading(false);
             }
         } else {
-            if (!phone) {
-                addToast({ type: 'error', message: 'Please enter your phone number.' });
+            if (!otpEmail) {
+                addToast({ type: 'error', message: 'Please enter your email address.' });
                 return;
             }
             setLoading(true);
             try {
-                await loginWithOtp(phone);
-                addToast({ type: 'success', message: 'Verification code sent!' });
-                navigate('/verify-otp', { state: { phone, from: 'login' } });
+                await loginWithOtp(otpEmail);
+                addToast({ type: 'success', message: 'Verification code sent to email!' });
+                navigate('/verify-otp', { state: { email: otpEmail, from: 'login' } });
             } catch (err) {
-                addToast({ type: 'error', message: 'Failed to send OTP.' });
+                addToast({ type: 'error', message: 'Failed to send OTP code.' });
             } finally {
                 setLoading(false);
             }
@@ -92,10 +92,10 @@ export default function Login() {
                                 Email Access
                             </button>
                             <button
-                                onClick={() => setLoginMode('phone')}
-                                className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${loginMode === 'phone' ? 'bg-white text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                                onClick={() => setLoginMode('otp')}
+                                className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${loginMode === 'otp' ? 'bg-white text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
                             >
-                                Phone OTP
+                                Email OTP
                             </button>
                         </div>
                     </div>
@@ -150,20 +150,20 @@ export default function Login() {
                             </>
                         ) : (
                             <label className="flex flex-col gap-2">
-                                <span className="text-slate-700 text-sm font-medium">Phone Number</span>
+                                <span className="text-slate-700 text-sm font-medium">Email Address (for Code)</span>
                                 <div className="relative group">
                                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
-                                        <Phone className="w-5 h-5" />
+                                        <Mail className="w-5 h-5" />
                                     </div>
                                     <input
-                                        type="tel"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        placeholder="+234 801 234 5678"
+                                        type="email"
+                                        value={otpEmail}
+                                        onChange={(e) => setOtpEmail(e.target.value)}
+                                        placeholder="name@example.com"
                                         className="input-field input-with-icon"
                                     />
                                 </div>
-                                <p className="text-[11px] text-slate-400">We'll send a 6-digit verification code to this number.</p>
+                                <p className="text-[11px] text-slate-400">We'll send a 6-digit verification code to this email.</p>
                             </label>
                         )}
 
