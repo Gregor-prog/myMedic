@@ -10,7 +10,11 @@ from app.core.config import settings
 engine = create_async_engine(
     str(settings.SQLALCHEMY_DATABASE_URI),
     echo=False,
-    future=True
+    future=True,
+    connect_args={
+        "prepared_statement_cache_size": 0,
+        "statement_cache_size": 0
+    }
 )
 
 # Async Session Maker
