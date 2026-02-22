@@ -16,6 +16,12 @@ const api = axios.create({
 // Request interceptor — attach Supabase session token to FastAPI requests
 api.interceptors.request.use(
     async (config) => {
+        const bypassToken = localStorage.getItem('bypass_token');
+        if (bypassToken) {
+            config.headers['Authorization'] = `Bearer ${bypassToken}`;
+            return config;
+        }
+
         const { data: { session } } = await supabase.auth.getSession();
         if (session?.access_token) {
             config.headers['Authorization'] = `Bearer ${session.access_token}`;
@@ -41,24 +47,17 @@ api.interceptors.response.use(
 // ── Auth Service (Supabase Auth) ─────────────────────────────
 export const authService = {
     login: async (email, password) => {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
-        if (error) throw error;
-        return data;
+        // BYPASS LOGIC
+        const token = `BYPASS_${email}`;
+        localStorage.setItem('bypass_token', token);
+        return { user: { id: `mock-${email}`, email } };
     },
 
     register: async (email, password, metadata = {}) => {
-        const { data, error } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                data: metadata, // full_name, role, phone_number
-            },
-        });
-        if (error) throw error;
-        return data;
+        // BYPASS LOGIC
+        const token = `BYPASS_${email}`;
+        localStorage.setItem('bypass_token', token);
+        return { user: { id: `mock-${email}`, email, user_metadata: metadata } };
     },
 
     loginWithGoogle: async () => {
@@ -73,36 +72,43 @@ export const authService = {
     },
 
     loginWithOtp: async (email) => {
-        const { data, error } = await supabase.auth.signInWithOtp({
-            email,
-        });
-        if (error) throw error;
-        return data;
+        // BYPASS LOGIC
+        return { message: "Mock OTP sent" };
     },
 
     verifyOtp: async (email, token) => {
-        const { data, error } = await supabase.auth.verifyOtp({
-            email,
-            token,
-            type: 'email',
-        });
-        if (error) throw error;
-        return data;
+        // BYPASS LOGIC
+        const bypass = `BYPASS_${email}`;
+        localStorage.setItem('bypass_token', bypass);
+        return { user: { id: `mock-${email}`, email } };
     },
 
     getSession: async () => {
+        const bypassToken = localStorage.getItem('bypass_token');
+        if (bypassToken) {
+            const email = bypassToken.replace('BYPASS_', '');
+            return { user: { id: `mock-${email}`, email } };
+        }
+
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error) throw error;
         return session;
     },
 
     getUser: async () => {
+        const bypassToken = localStorage.getItem('bypass_token');
+        if (bypassToken) {
+            const email = bypassToken.replace('BYPASS_', '');
+            return { id: `mock-${email}`, email };
+        }
+
         const { data: { user }, error } = await supabase.auth.getUser();
         if (error) throw error;
         return user;
     },
 
     logout: async () => {
+        localStorage.removeItem('bypass_token');
         const { error } = await supabase.auth.signOut();
         if (error) throw error;
     },
