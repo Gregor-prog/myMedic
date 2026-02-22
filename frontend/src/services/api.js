@@ -50,14 +50,15 @@ export const authService = {
         // BYPASS LOGIC
         const token = `BYPASS_${email}`;
         localStorage.setItem('bypass_token', token);
-        return { user: { id: `mock-${email}`, email } };
+        return { user: { id: `mock-${email}`, email, user_metadata: { role: 'patient', full_name: email } } };
     },
 
     register: async (email, password, metadata = {}) => {
         // BYPASS LOGIC
         const token = `BYPASS_${email}`;
         localStorage.setItem('bypass_token', token);
-        return { user: { id: `mock-${email}`, email, user_metadata: metadata } };
+        const mergedMetadata = { role: 'patient', ...metadata, full_name: metadata.full_name || email };
+        return { user: { id: `mock-${email}`, email, user_metadata: mergedMetadata } };
     },
 
     loginWithGoogle: async () => {
@@ -80,14 +81,14 @@ export const authService = {
         // BYPASS LOGIC
         const bypass = `BYPASS_${email}`;
         localStorage.setItem('bypass_token', bypass);
-        return { user: { id: `mock-${email}`, email } };
+        return { user: { id: `mock-${email}`, email, user_metadata: { role: 'patient', full_name: email } } };
     },
 
     getSession: async () => {
         const bypassToken = localStorage.getItem('bypass_token');
         if (bypassToken) {
             const email = bypassToken.replace('BYPASS_', '');
-            return { user: { id: `mock-${email}`, email } };
+            return { user: { id: `mock-${email}`, email, user_metadata: { role: 'patient', full_name: email } } };
         }
 
         const { data: { session }, error } = await supabase.auth.getSession();
@@ -99,7 +100,7 @@ export const authService = {
         const bypassToken = localStorage.getItem('bypass_token');
         if (bypassToken) {
             const email = bypassToken.replace('BYPASS_', '');
-            return { id: `mock-${email}`, email };
+            return { id: `mock-${email}`, email, user_metadata: { role: 'patient', full_name: email } };
         }
 
         const { data: { user }, error } = await supabase.auth.getUser();
